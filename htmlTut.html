@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <!-- In head, we give description of the website (metadata, title, external sheet links) -->
+
 <head>
+
     <!-- meta tag :- used in SEO, to give description for preview etc. -->
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,20 +11,177 @@
     <meta name="description" content="This is the description of the website">
     <meta name="keywords" content="html, html tutorials, web development">
     <meta name="robots" content="INDEX, FOLLOW">
+    
     <title>My Website</title>
+    
     <!-- This is how you include external css -->
     <link rel="stylesheet" href="cssTut.css">
     <!-- This is how you include external JS -->
     <script src="JSTut.js"></script>
+
 </head>
+
+
 <body>
+
     <!-- h1,h2,...,h6 -> headings(h1 to h6 size decreases), p->paragraph -->
     <h1>This is h1 the heading</h1> 
     <h6>This is h6 the heading</h6>
+
     <!-- here strong bolds the text in it and em(emphasis) italizes the text but we can control what it does using css -->
     <!-- hr:horizontal rule, br:line break -->
     <!-- Lorem23 for dummy text of 23 words -->
-    <p>This is a <strong>new paragraph</strong>. <hr><br>Lets write some random stuff right now because Im just learning html for the first time and i dont want to use <em>lorem ipsum</em> because that's just too much random.</p>
-    
+    <p>This is a <strong>new paragraph</strong>.<br>Lets write some random stuff right now because Im just learning html for the first time and i dont want to use <em>lorem ipsum</em> because that's just too much random.</p>
+
+    <!-- Embedding images (If image not found, then alt text is shown)-->
+    <!-- We can also use attributes like width="600" height="400" in img tag but its recommended to do that part in css -->
+    <hr><img src="sample.jpg" alt="Local Sample Image not found"><hr>
+    <img src="https://source.unsplash.com/500x300/?nature" alt="Remote Image not found"><br>
+    <br><br>
+    <!-- To embed links(external/internal), we can use anchor  -->
+    <a href="https://www.google.com">Click here to open google homepage in this tab</a>
+    <!-- To open the link in a new tab directly use target attribute -->
+    <a href="https://www.google.com" target="_blank"><br>Click here to open google homepage in a new tab</a>
+
+
+    <br><br><hr>
+    <h3>HTML Lists</h3>
+    <!-- Unordered lists : types: disc, circle, square -->
+    <ul type="circle">
+        <li>This is first item of my <strong>unordered list</strong> </li>
+        <ol>
+            <li>Ordered list inside unordered list 1</li>
+            <li>Ordered list inside unordered list 2</li>
+        </ol>
+        <li>This is second item of my <strong>unordered list</strong></li>
+    </ul>
+    <!-- Ordered list : types: 1,A,a,I,i -->
+    <ol type="I">
+        <li>This is first item of my <strong>ordered list</strong></li>
+        <li>This is second item of my <strong>ordered list</strong></li>
+    </ol>
+
+
+    <hr>
+    <h3>HTML tables</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Employee ID</th>
+                <th>Employee Role</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Aniket</td>
+                <td>654853</td>
+                <td>CEO</td>
+            </tr>
+            <tr>
+                <td>Harry</td>
+                <td>654854</td>
+                <td>Programmer</td>
+            </tr>
+            <tr>
+                <td>Rohan Das</td>
+                <td>654855</td>
+                <td>HTML Expert</td>
+            </tr>
+        </tbody>
+    </table>
+
+
+    <hr>
+    <h3>HTML Forms</h3>
+    <!-- We'll submit the form to backend -->
+    <form action="backend.php"> 
+        <!-- We can use <br> also to go to next line but div is recommended -->
+        <!-- name attribute is used for backend to understand the tag/inputs -->
+        <!-- Using label we can select the box input box just by clicking the label(Inside for, we give the id) -->
+        <div> <label for="name">Name : </label> <input type="text" name="myName" id="name"></div>
+        <div>Role : <input type="text" name="myRole"></div>
+        <div>Date of Birth : <input type="date" name="DOB"></div>
+        <div>Email : <input type="email" name="myEmail"></div>
+        <!-- NOTE: in type:number, we can write 2e4 , which means 2*10^4 -->
+        <div>Experience(in years) : <input type="number" name="myExperience"></div>
+        <!-- To check the checkbox by default, we use checked, remove it if not required to check by default -->
+        <div>Are you Eligible? <input type="checkbox" name="myEligibility" checked></div>
+        <div>Gender : Male <input type="radio" name="myGender"> Female <input type="radio" name="myGender"> Other <input type="radio" name="myGender"></div>
+        <div>Write about yourself : <br> <textarea name="myText" cols="30" rows="10"></textarea></div>
+        <div>
+            <label for="car">Car : </label>
+            <select name="myCar" id="car">
+                <!-- Value is used for backend purpose; use selected to select an option as default -->
+                <option value="ind">Indica</option>
+                <option value="swf" selected>Swift</option>
+                <option value="frd">Ford</option>
+            </select>
+        </div>
+        <br>
+        <div>
+            <input type="submit" value="Submit Form">
+            <input type="reset" value="Reset Form">
+        </div> 
+    </form>
+
+
+    <hr>
+    <h3>Inline & Block element</h3>
+    <!-- Block takes new and whole width whereas Inline takes only the width required/width of the text -->
+    <!-- ul,li,div,Paragraph is a block element but em,img,strong,anchor,span is inline -->
+    <!-- We can make block elements as inline using css -->
+    <p>Para 1</p><p>Para 2</p>
+    <span>Span 1</span><span> Span 2</span>
+
+
+    <hr>
+    <h3>Identifiers(IDs) and Classes</h3>
+    <!-- IDs are unique , to identify elements-->
+    <!-- We can use classes to change all elements/contents inside a particular class just by changing properties of the class -->
+    <!-- We can give multiple classes separated by space but not multiple ids -->
+    <!-- We can define the classes using css -->
+    <div id="mainBox" class="redBg blackBorder">
+        This is mainBox
+    </div>
+    <!-- SHORTCUT : # is for id and . is for class   -->
+    <!-- Eg. : span#mainSpan.redBg.blueBd will automatically write <span id="mainSpan" class="redBg blueBd"></span> using Emmet -->
+    <!-- Emmet takes div tag as default , i.e .myid => <div id="myid"></div> -->
+
+
+    <hr>
+    <h3>HTML Entities</h3>
+    <!-- To add extra spaces, use &nbsp; (non breaking space) but recommended to use css instead of nbsp-->
+    <!-- To write <p>, use &lt;p&gt; -->
+    <!-- We can also write special characters using html entities -->
+    <div class="container">
+        <p>This is a paragraph with extra &nbsp; space...</p>
+        <p>This is a paragraph &lt;/p&gt;</p>
+        <p>This is symbol of pound &pound;</p>
+        <p>Copyright is written like this &copy;</p>
+        <p>at the rate is written like this &commat;</p>
+        <p>Empty character is written like this &#8203;</p>
+        <a href="https://dev.w3.org/html5/html-author/charref" target="_blank">click here to see all HTML entities </a>
+    </div>
+
+
+    <hr>
+    <h3>HTML Semantic Elements</h3>
+    <!-- Semantics refers to the meaning of a piece of code -->
+    <!-- Proper semantics is useful to rank higher in search engines -->
+    <p>An Example</p>
+    <img src="https://miro.medium.com/max/1000/1*zHJFnu7QF-PgUb8108aLcA.png" alt="Image not found" width=300 height=300>
+    <br><br>
+    <a href="https://developer.mozilla.org/en-US/docs/Glossary/Semantics" target="_blank">click here for Semantics Reference</a>
+    <br><br>
+    <!-- Here we take example of the summary element -->
+    <!-- details will give a drop down key -->
+    <details>
+        <summary>I have keys but no doors. I have space but no room. You can enter but can’t leave. What am I?</summary>
+        A keyboard.
+    </details>
+ 
 </body>
+
+
 </html>
