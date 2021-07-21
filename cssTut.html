@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Tutorial</title>
+    <!-- Internal CSS -->
+    <style>
+        p{
+            color: blueviolet !important; 
+            background-color: hotpink;
+        }
+    </style>
+    <!-- External CSS -->
+    <link rel="stylesheet" href="cssTut.css">
+    <!-- NOTE : The CSS written later(Here external) takes higher precedence. -->
+    <!-- !important makes the css as the highest precedence. Even more than inline also -->
+</head>
+
+<body>
+
+    <h3>Inline, Internal & External CSS</h3>
+    <!-- Inline CSS -->
+    <!-- Inline >> External/Internal-->
+    <p style="color:red;">Using Inline CSS</p>
+    <p>Using Internal/External CSS</p>
+
+    <hr>
+
+</body>
+
+</html>
