@@ -1,89 +1,267 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CSS Selectors</title>
-    <!-- Importing fonts from fonts.google.com -->
-    <link href="https://fonts.googleapis.com/css2?family=Qahiri&display=swap" rel="stylesheet">
-    <!-- Using Internal CSS -->
+    <title>Box Model | Alignment | Pseudo Selectors and Designing | Navigation Menu | Display Property | Position</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tourney:wght@100&display=swap" rel="stylesheet">
     <style>
-        /* This is how we give comment in css */
-        /* element selector */
-        p{
-            /* border-width: 2px;
-            border-color: red;
-            border-style: solid; */
-            border: 2px solid red;
-            /* for rounded corners :- */
-            border-radius: 20px;
-            /* Web safe fonts: fonts already available in most operating systems */
-            /* Web fonts: fonts that needs to be imported (Here Qahiri is imported)*/
-            /* The list in the font family is a font stack */
-            font-family: 'Ubuntu', 'Qahiri', Georgia, 'Times New Roman', Times, serif;
-            /* 1 px = 1/96 of an inch */
-            font-size: 35px;
-            /* line-height is for defining spacing between the lines */
-            /* 1.5em = 1.5 x parent font size */
-            line-height: 1.5em;
+        /* Universal Selector */
+        *{
+            /* NOTE: Width comprises of margin,border,padding . therefore, on changing any of them, the width can also change.
+            To force it to a fixed width, use box sizing */
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
         }
-        span{
-            font-weight: bold;
+        /* Body selector */
+        body{
+            background-color: rgb(81, 180, 247);
         }
-        /* class selector */
-        .redElement{
-            color: red;
+        .model{
+            background-color: hotpink;
+            border: 3px solid rgb(78, 27, 78);
+            padding: 9px; 
+            /* We can also give margin/padding like this eg:
+            padding-bottom: 9px;
+            padding-right: 5px; etc.. */
+            /* padding: 23px 56px 6px 78px; => padding: top right bottom left; */
+            /* padding: 34px 19px; => padding: y(top/bottom) x(left/right); */
+            margin: 20px; /* margin: auto; =>center in x axis */
+            width: 350px;
+            border-radius: 10px;
         }
-        .bgPrimary{
-            background-color: blue;
+        .container{
+            width: 900px;  
+            border: 3px solid purple;
+            margin: auto;
         }
-        /* id selector */
-        #hello{
-            height: 200px;
-            /* this will repeat the image in all the space available */
-            background-image: url('https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png');
-            /* to repeat only in x axis: repeat-x ,y axis: repeat-y,only once: no-repeat; */
-            background-repeat: no-repeat;
-            /* position of background image */
-            background-position: center top;
+        .item{
+            border: 3px solid grey;
+            margin: 12px 3px;
+            padding: 12px 3px;
+            background: rgb(173, 169, 169);
+            font-family: 'Tourney', cursive;
         }
-        #firstPara{
+        #fruit{
+            float: left;
+            width: 48%;
+            text-align: center;
+        }
+        #computer{
+            float: left;
+            width: 50%;
+            text-align: right;
+        }
+        #stationary{
+            /* koi bhi left float wala element mere upar na aaye */
+            clear: left; /* left, right, both */
+            width: 100%;
+        }
+        .content{
+            border:2px solid red;
+            background-color: greenyellow;
+            padding: 34px;
+            margin: 34px auto;
+            width: 666px;
+        }
+        .btn{
+            background-color: palevioletred;
+            padding: 6px;
+            border: none;
+            cursor: pointer;
+            font-size: 15px;
+            border-radius: 6px;
+        }
+        a{
+            text-decoration: none; /* removes the underline in the link */
+        }
+        /* Pseudo Selectors */
+        a:visited{ /* after the element is clicked/visited once */
             color: green;
-            font-style: italic;
-            height: 60px;
-            background-image: url('https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png');
         }
-        /* grouping selector */
-        span,footer{
-            background-color: pink;
-            height: 50px;
-            width: 455px;
-            /* different borders for top,right,left,bottom */
-            border-top: 2px solid violet;
-            border-right: 2px solid red;
-            border-left: 2px solid green;
-            border-bottom: 4px solid blue;
-            border-top-left-radius: 10px;
-            border-bottom-right-radius: 10px;
+        a:hover{
+            color: black; /* changes color when hovered over the element */
+        }
+        a:active{ /* when you click the element */
+            background-color: teal;
+        }
+        .btn:hover{
+            background-color: purple;
+        }
+        /* Navigation bar */
+        .navbar{
+            background-color: black;
+            border-radius: 25px;
+        }
+        .navbar ul{
+            overflow: auto; /* to avoid float to overflow its parent */
+        }
+        .navbar li{ /* all li inside navbar */
+            float: left;
+            list-style: none; /* to remove the bullets */
+            margin: 15px 35px;
+        }
+        .navbar li a{
+            color: white;
+            padding: 3px 3px;
+            
+        }
+        .search{
+            float: right;
+            color: white;
+            padding: 12px 75px;
+        }
+        .navbar input{
+            border-radius: 5px;
+            border: 2px solid grey;
+            padding: 3px 17px;
+        }
+        .top{
+            margin: auto;
+            border: 2px solid red;
+            width: 15%;
+        }
+        img{
+            width: 34px;
+            display: block; /* img is inline element. this makes it a block element */
+            margin: auto;
+        }
+        #welcome{
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            text-align: center;
+        }
+        .box{
+            border: 4px solid black;
+            background-color: rgb(18, 136, 156);
+            padding: 25px;
+            margin-top: 4px;
+            /* To set the width we select display as block and we also need the display to be side by side so we make it inline also */
+            display: inline-block; 
+            width: 33%;
+        }
+        .con{
+            margin: auto;
+            display: block;
+            width: 1200px;
+        }
+        .boxes{
+            display: inline-block;
+            border: 2px solid rgb(133, 29, 133);
+            width: 150px;
+            height: 150px;
+            margin: 3px;
+        }
+        #box3{
+            /* Position:- static(default), absolute, relative, fixed, sticky */
+            /* relative:- relative to its normal position. we can use top,bottom,left,right   */
+            /* Use relative when we want gap in the normal position else use absolute */
+            position: relative;
+            top: 10px;
+            left: 25px;
+        }
+        #box2{
+            /* NOTE:- absolute to its parent */
+            position: absolute;
+            left: 500px;
+        }
+        #box1{
+            /* While scrolling, sticky will be fixed only till the end of the container, But fixed will be fixed until the end of web page*/
+            position: fixed;
+            top: 0;
+            left: 50%;
+        }
+        .newcon{
+            border: 2px solid black;
+            background-color: khaki;
+            height: 3000px;
         }
     </style>
 </head>
-
 <body>
-
-    <h3>CSS Selectors</h3>
-    <!-- Used to target the html elements -->
-    <p id="hello">hello</p>
-    <p id="firstPara">This is first Para</p>
-    <p id="secondPara" class="redElement bgPrimary">This is second Para</p>
-    <div>
-        <p class="bgPrimary">This is third Para but inside div</p>
-        <span>This is span</span>
+    <h3>Box Model</h3>
+    <div class="model">
+        <h4>This is first heading</h4>
+        <p id="first">Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus, atque. Optio officiis, amet illo saepe dicta corporis commodi soluta fugiat!</p>
     </div>
-    <footer>This is footer</footer>
 
+    <div class="model">
+        <h4>This is second heading</h4>
+        <p id="second">Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus, atque. Optio officiis, amet illo saepe dicta corporis commodi soluta fugiat!</p>
+    </div>
+
+    <div class="model">
+        <h4>This is third heading</h4>
+        <p id="third">Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus, atque. Optio officiis, amet illo saepe dicta corporis commodi soluta fugiat!</p>
+    </div>
+
+    <h3>Alignment</h3>
+    <div class="container">
+        <div id="fruit" class="item">
+            <h4>Fruits</h4>
+            <p id="fruitpara" class="para">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempora commodi modi, a aliquam quaerat quisquam nesciunt iure autem provident. Hic.</p>
+        </div>
+        <div id="computer" class="item">
+            <h4>Computer</h4>
+            <p id="computerpara" class="para">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempora commodi modi, a aliquam quaerat quisquam nesciunt iure autem provident. Hic.</p>
+        </div>
+        <div id="stationary" class="item">
+            <h4>Stationary</h4>
+            <p id="stationarypara" class="para">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempora commodi modi, a aliquam quaerat quisquam nesciunt iure autem provident. Hic.</p>
+        </div>
+    </div>
+
+    <h3>Pseudo Selectors</h3>
+    <div class="content" id="cont1">
+        <h3>This is heading</h3>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur soluta, minus dolorum nobis odio ea! Perspiciatis at repellendus excepturi qui, minima incidunt tempore, expedita eum itaque dolore inventore quasi eos.</p>
+        <a href="https://google.com" class="btn">Read more</a>
+        <button class="btn">Contact Us</button>
+    </div>
+
+    <!-- Navigation Menu -->
+    <!-- NOTE: header is a block element -->
+    <header>
+        <nav class="navbar">
+            <ul>
+                <li> <a href="#">Home</a> </li>
+                <li> <a href="#">About</a> </li>
+                <li> <a href="#">Services</a> </li>
+                <li> <a href="#">Contact Us</a> </li>
+                <div class="search">
+                    <input type="text" name="search" id='search' placeholder="Search this Website">
+                </div>
+            </ul>
+        </nav>
+    </header>
+
+    <h3>Display Property</h3>
+    <header class="top">
+        <img src="google.png" alt="Image not found">
+        <h3 id="welcome">Welcome Guyzz</h3>
+    </header>
+    <div class="con">
+        <div class="box">
+            <h4 class="heading">Heading</h4>
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Non vitae sapiente illum quae dolorum, quisquam culpa unde incidunt sit corporis!</p>
+        </div>
+        <div class="box">
+            <h4 class="heading">Heading</h4>
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Non vitae sapiente illum quae dolorum, quisquam culpa unde incidunt sit corporis!</p>
+        </div>
+        <div class="box">
+            <h4 class="heading">Heading</h4>
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Non vitae sapiente illum quae dolorum, quisquam culpa unde incidunt sit corporis!</p>
+        </div>
+    </div>
+
+    <h3>Position</h3>
+    <div class="newcon">
+        <div class="boxes" id="box1">1</div>
+        <div class="boxes" id="box2">2</div>
+        <div class="boxes" id="box3">3</div>
+        <div class="boxes" id="box4">4</div>
+    </div>
 </body>
-
 </html>
