@@ -5,29 +5,84 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CSS Tutorial</title>
-    <!-- Internal CSS -->
+    <title>CSS Selectors</title>
+    <!-- Importing fonts from fonts.google.com -->
+    <link href="https://fonts.googleapis.com/css2?family=Qahiri&display=swap" rel="stylesheet">
+    <!-- Using Internal CSS -->
     <style>
+        /* This is how we give comment in css */
+        /* element selector */
         p{
-            color: blueviolet !important; 
-            background-color: hotpink;
+            /* border-width: 2px;
+            border-color: red;
+            border-style: solid; */
+            border: 2px solid red;
+            /* for rounded corners :- */
+            border-radius: 20px;
+            /* Web safe fonts: fonts already available in most operating systems */
+            /* Web fonts: fonts that needs to be imported (Here Qahiri is imported)*/
+            /* The list in the font family is a font stack */
+            font-family: 'Ubuntu', 'Qahiri', Georgia, 'Times New Roman', Times, serif;
+            /* 1 px = 1/96 of an inch */
+            font-size: 35px;
+            /* line-height is for defining spacing between the lines */
+            /* 1.5em = 1.5 x parent font size */
+            line-height: 1.5em;
+        }
+        span{
+            font-weight: bold;
+        }
+        /* class selector */
+        .redElement{
+            color: red;
+        }
+        .bgPrimary{
+            background-color: blue;
+        }
+        /* id selector */
+        #hello{
+            height: 200px;
+            /* this will repeat the image in all the space available */
+            background-image: url('https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png');
+            /* to repeat only in x axis: repeat-x ,y axis: repeat-y,only once: no-repeat; */
+            background-repeat: no-repeat;
+            /* position of background image */
+            background-position: center top;
+        }
+        #firstPara{
+            color: green;
+            font-style: italic;
+            height: 60px;
+            background-image: url('https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png');
+        }
+        /* grouping selector */
+        span,footer{
+            background-color: pink;
+            height: 50px;
+            width: 455px;
+            /* different borders for top,right,left,bottom */
+            border-top: 2px solid violet;
+            border-right: 2px solid red;
+            border-left: 2px solid green;
+            border-bottom: 4px solid blue;
+            border-top-left-radius: 10px;
+            border-bottom-right-radius: 10px;
         }
     </style>
-    <!-- External CSS -->
-    <link rel="stylesheet" href="cssTut.css">
-    <!-- NOTE : The CSS written later(Here external) takes higher precedence. -->
-    <!-- !important makes the css as the highest precedence. Even more than inline also -->
 </head>
 
 <body>
 
-    <h3>Inline, Internal & External CSS</h3>
-    <!-- Inline CSS -->
-    <!-- Inline >> External/Internal-->
-    <p style="color:red;">Using Inline CSS</p>
-    <p>Using Internal/External CSS</p>
-
-    <hr>
+    <h3>CSS Selectors</h3>
+    <!-- Used to target the html elements -->
+    <p id="hello">hello</p>
+    <p id="firstPara">This is first Para</p>
+    <p id="secondPara" class="redElement bgPrimary">This is second Para</p>
+    <div>
+        <p class="bgPrimary">This is third Para but inside div</p>
+        <span>This is span</span>
+    </div>
+    <footer>This is footer</footer>
 
 </body>
 
