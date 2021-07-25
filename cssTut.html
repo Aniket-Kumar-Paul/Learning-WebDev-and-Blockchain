@@ -1,267 +1,147 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Box Model | Alignment | Pseudo Selectors and Designing | Navigation Menu | Display Property | Position</title>
+    <title>Visibility & z-index|Flexbox|Responsive Design</title>
     <link href="https://fonts.googleapis.com/css2?family=Tourney:wght@100&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="cssTut.css">
     <style>
-        /* Universal Selector */
-        *{
-            /* NOTE: Width comprises of margin,border,padding . therefore, on changing any of them, the width can also change.
-            To force it to a fixed width, use box sizing */
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-        /* Body selector */
-        body{
-            background-color: rgb(81, 180, 247);
-        }
-        .model{
-            background-color: hotpink;
-            border: 3px solid rgb(78, 27, 78);
-            padding: 9px; 
-            /* We can also give margin/padding like this eg:
-            padding-bottom: 9px;
-            padding-right: 5px; etc.. */
-            /* padding: 23px 56px 6px 78px; => padding: top right bottom left; */
-            /* padding: 34px 19px; => padding: y(top/bottom) x(left/right); */
-            margin: 20px; /* margin: auto; =>center in x axis */
-            width: 350px;
-            border-radius: 10px;
-        }
-        .container{
-            width: 900px;  
-            border: 3px solid purple;
-            margin: auto;
-        }
-        .item{
-            border: 3px solid grey;
-            margin: 12px 3px;
-            padding: 12px 3px;
-            background: rgb(173, 169, 169);
-            font-family: 'Tourney', cursive;
-        }
-        #fruit{
-            float: left;
-            width: 48%;
-            text-align: center;
-        }
-        #computer{
-            float: left;
-            width: 50%;
-            text-align: right;
-        }
-        #stationary{
-            /* koi bhi left float wala element mere upar na aaye */
-            clear: left; /* left, right, both */
-            width: 100%;
-        }
-        .content{
-            border:2px solid red;
-            background-color: greenyellow;
-            padding: 34px;
-            margin: 34px auto;
-            width: 666px;
-        }
-        .btn{
-            background-color: palevioletred;
-            padding: 6px;
-            border: none;
-            cursor: pointer;
-            font-size: 15px;
-            border-radius: 6px;
-        }
-        a{
-            text-decoration: none; /* removes the underline in the link */
-        }
-        /* Pseudo Selectors */
-        a:visited{ /* after the element is clicked/visited once */
-            color: green;
-        }
-        a:hover{
-            color: black; /* changes color when hovered over the element */
-        }
-        a:active{ /* when you click the element */
-            background-color: teal;
-        }
-        .btn:hover{
-            background-color: purple;
-        }
-        /* Navigation bar */
-        .navbar{
-            background-color: black;
-            border-radius: 25px;
-        }
-        .navbar ul{
-            overflow: auto; /* to avoid float to overflow its parent */
-        }
-        .navbar li{ /* all li inside navbar */
-            float: left;
-            list-style: none; /* to remove the bullets */
-            margin: 15px 35px;
-        }
-        .navbar li a{
-            color: white;
-            padding: 3px 3px;
-            
-        }
-        .search{
-            float: right;
-            color: white;
-            padding: 12px 75px;
-        }
-        .navbar input{
-            border-radius: 5px;
-            border: 2px solid grey;
-            padding: 3px 17px;
-        }
-        .top{
-            margin: auto;
-            border: 2px solid red;
-            width: 15%;
-        }
-        img{
-            width: 34px;
-            display: block; /* img is inline element. this makes it a block element */
-            margin: auto;
-        }
-        #welcome{
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            text-align: center;
-        }
+        /* VISIBILITY & Z-INDEX */
         .box{
-            border: 4px solid black;
-            background-color: rgb(18, 136, 156);
-            padding: 25px;
-            margin-top: 4px;
-            /* To set the width we select display as block and we also need the display to be side by side so we make it inline also */
-            display: inline-block; 
-            width: 33%;
-        }
-        .con{
-            margin: auto;
-            display: block;
-            width: 1200px;
-        }
-        .boxes{
-            display: inline-block;
-            border: 2px solid rgb(133, 29, 133);
-            width: 150px;
-            height: 150px;
-            margin: 3px;
-        }
-        #box3{
-            /* Position:- static(default), absolute, relative, fixed, sticky */
-            /* relative:- relative to its normal position. we can use top,bottom,left,right   */
-            /* Use relative when we want gap in the normal position else use absolute */
-            position: relative;
-            top: 10px;
-            left: 25px;
-        }
-        #box2{
-            /* NOTE:- absolute to its parent */
-            position: absolute;
-            left: 500px;
+            width: 170px;
+            height: 170px;
+            border: 2px solid black;
         }
         #box1{
-            /* While scrolling, sticky will be fixed only till the end of the container, But fixed will be fixed until the end of web page*/
-            position: fixed;
-            top: 0;
-            left: 50%;
+            background-color: green;
         }
-        .newcon{
+        /* visibiliy: hidden hides the element but reserves the space it takes, whereas display: none hides the element but doesn't reserve any space */
+        #box2{
+            display: none;
+            background-color: red;
+        }
+        #box3{
+            visibility: hidden;
+            background-color: blue;
+        }
+        #box4{
+            background-color: palevioletred;
+        }
+        /* z-index is used when one element is above another element & we want to decide which one to show */
+        /* NOTE: Position should NOT be static if want to use z-index */
+        /* Here, without the z-index, box6 is above box5 */
+        /* After giving z-index, the one with greater z-index value is on above */
+        #box5{
+            position: relative;
+            top: 49px;
+            z-index: 6;
+            background-color: purple;
+        }
+        #box6{
+            position: relative;
+            top: 15px;
+            z-index: 5;
+            background-color: orange;
+        }
+
+        /* FLEXBOX */
+        .container{
+            height: 544px;
             border: 2px solid black;
-            background-color: khaki;
-            height: 3000px;
+            display: flex;
+            /* Flex Properties for flex container*/
+            /* flex-direction: row(default)|column|row-reverse|column-reverse; */
+            flex-wrap: wrap; /* no-wrap(default) */
+            /* To adjust both direction and wrap together use flex-flow */
+            /* flex-flow: row wrap-reverse; */
+            justify-content: center; /* To position all elements inside the flex container to center (x-axis)*/
+            align-items: flex-end; /* Position at bottom (y-axis)*/
+            align-items: flex-start; /* Position at top (y-axis)*/
+            align-items: stretch; /* On wrapping, makes evenly space vertically */
+            align-items: center; /* To position all elements inside the flex container to center (y-axis)*/
+            justify-content: space-between; /* to give equal space between all elements but not at the ends*/
+            justify-content: space-evenly; /* same as space-between but also includes the ends */
+            justify-content: space-around; /*similar to giving equal margins to each item on right & left directions..therfore space between box is double than that at the ends */
         }
+        /* Flex Properties for flex items*/
+        #item1{
+            /* Higher the order, later is its position => highest order means last position*/
+            order: 10;
+            /* when container expands, the item grows by the given factor(here,5) */
+            flex-grow: 5;
+        }
+        #item3{
+            order: 16;
+            /* when container shrinks, the item shrinks by the given factor(here,3) */
+            flex-shrink: 10;
+        }
+        #item4{
+            /* If flex-direction: row; then flex-basis controls the width, if column then height */
+            flex-basis: 250px;
+            /* SHORTCUT: flex: <flex grow> <flex shrink> <flex basis>; */
+        }
+        #item5{
+            align-self: flex-end; /* same as align-items but for specific item */
+        }
+        .item{
+            width: 150px;
+            height: 150px;
+            background-color: tomato;
+            border: 2px solid green;
+            margin: 10px;
+            padding: 3px;
+        }
+
+        /* Responsive Design */
+
     </style>
 </head>
+
 <body>
-    <h3>Box Model</h3>
-    <div class="model">
-        <h4>This is first heading</h4>
-        <p id="first">Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus, atque. Optio officiis, amet illo saepe dicta corporis commodi soluta fugiat!</p>
-    </div>
+    <h3>VISIBILITY & Z-INDEX</h3>
+    <div class="box" id="box1"></div>
+    <div class="box" id="box2"></div>
+    <div class="box" id="box3"></div>
+    <div class="box" id="box4"></div>
+    <div class="box" id="box5"></div>
+    <div class="box" id="box6"></div>
+    <br><br><hr>
 
-    <div class="model">
-        <h4>This is second heading</h4>
-        <p id="second">Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus, atque. Optio officiis, amet illo saepe dicta corporis commodi soluta fugiat!</p>
-    </div>
-
-    <div class="model">
-        <h4>This is third heading</h4>
-        <p id="third">Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus, atque. Optio officiis, amet illo saepe dicta corporis commodi soluta fugiat!</p>
-    </div>
-
-    <h3>Alignment</h3>
+    <h3>FLEXBOX</h3>
     <div class="container">
-        <div id="fruit" class="item">
-            <h4>Fruits</h4>
-            <p id="fruitpara" class="para">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempora commodi modi, a aliquam quaerat quisquam nesciunt iure autem provident. Hic.</p>
-        </div>
-        <div id="computer" class="item">
-            <h4>Computer</h4>
-            <p id="computerpara" class="para">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempora commodi modi, a aliquam quaerat quisquam nesciunt iure autem provident. Hic.</p>
-        </div>
-        <div id="stationary" class="item">
-            <h4>Stationary</h4>
-            <p id="stationarypara" class="para">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempora commodi modi, a aliquam quaerat quisquam nesciunt iure autem provident. Hic.</p>
-        </div>
+        <div class="item" id="item1">First Box </div>
+        <div class="item" id="item2">Second Box </div>
+        <div class="item" id="item3">Third Box </div>
+        <div class="item" id="item4">Fourth Box </div>
+        <div class="item" id="item5">Fifth Box </div>
+        <div class="item" id="item6">Sixth Box </div>
     </div>
+    <br><hr>
 
-    <h3>Pseudo Selectors</h3>
-    <div class="content" id="cont1">
-        <h3>This is heading</h3>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur soluta, minus dolorum nobis odio ea! Perspiciatis at repellendus excepturi qui, minima incidunt tempore, expedita eum itaque dolore inventore quasi eos.</p>
-        <a href="https://google.com" class="btn">Read more</a>
-        <button class="btn">Contact Us</button>
-    </div>
-
-    <!-- Navigation Menu -->
-    <!-- NOTE: header is a block element -->
-    <header>
-        <nav class="navbar">
-            <ul>
-                <li> <a href="#">Home</a> </li>
-                <li> <a href="#">About</a> </li>
-                <li> <a href="#">Services</a> </li>
-                <li> <a href="#">Contact Us</a> </li>
-                <div class="search">
-                    <input type="text" name="search" id='search' placeholder="Search this Website">
-                </div>
-            </ul>
-        </nav>
-    </header>
-
-    <h3>Display Property</h3>
-    <header class="top">
-        <img src="google.png" alt="Image not found">
-        <h3 id="welcome">Welcome Guyzz</h3>
-    </header>
-    <div class="con">
-        <div class="box">
-            <h4 class="heading">Heading</h4>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Non vitae sapiente illum quae dolorum, quisquam culpa unde incidunt sit corporis!</p>
-        </div>
-        <div class="box">
-            <h4 class="heading">Heading</h4>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Non vitae sapiente illum quae dolorum, quisquam culpa unde incidunt sit corporis!</p>
-        </div>
-        <div class="box">
-            <h4 class="heading">Heading</h4>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Non vitae sapiente illum quae dolorum, quisquam culpa unde incidunt sit corporis!</p>
-        </div>
-    </div>
-
-    <h3>Position</h3>
-    <div class="newcon">
-        <div class="boxes" id="box1">1</div>
-        <div class="boxes" id="box2">2</div>
-        <div class="boxes" id="box3">3</div>
-        <div class="boxes" id="box4">4</div>
-    </div>
+    <h3>Responsive Design</h3>
+    <p>Ways to achieve Responsive Design</p>
+    <ul>
+        <li>Setting up the viewport</li>
+        <li>Use max-width/height</li>
+        <li>Using CSS Media Queries</li>
+        <li>Using rem/vh/vw units over pixels</li>
+    </ul>
+    <br>
+    <strong>Units :</strong>
+    <a href="https://webdesign.tutsplus.com/tutorials/comprehensive-guide-when-to-use-em-vs-rem--cms-23984">Comprehensive guide to rem and em</a>
+    <ul>
+        <!-- Use em when we want to resize the child elements automatically if the parent element is resized -->
+        <li><strong>x em = </strong>x * parents font size</li> <!--If font-size inside the item already defined then others take x * font size of the item-->
+        <!-- When we want to put the font size of whole page same relative to html font size i.e the font size of set in the browser -->
+        <li><strong>x rem = </strong>x * html font size</li> <!--Both font size and all others follow as per the html font size-->
+        <!-- height=100vh means to take 100% ie the full page height of the viewport -->
+        <li><strong>x vh = </strong>x% * viewport height</li> 
+        <!-- width=100vw means to take 100% ie the full page width of the viewport -->
+        <li><strong>x vw = </strong>x% * viewport width</li> 
+    </ul>
 </body>
+
 </html>
