@@ -1,145 +1,125 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Media Queries|More on Selectors|Before & After Pseudo Selectors|Variables & Custom Properties</title>
-    <style>
-        /* Variables */
-        :root{ /* Global Variables */
-            --primary-color: green;
-            --danger-color: red;
-            --maxh: 300px;
-        }
-        /* To use the variables,Eg.- color: var(--danger-color); */
-
-        /* Before and After Pseudo Selectors */
-        body{
-            /* --bgdcolor: blue; Local Variable */
-            margin: 0;
-            padding: 0;
-            /* background: url('https://source.unsplash.com/1600x900/?nature,water') no-repeat; */
-        }
-        /* On putting the background image inside body, It covers the whole page but makes it difficult to read the texts due to colour mismatches
-        We can solve this using the before pseudo selector and using opacity inside it. */
-        header::before{
-            background: url('https://source.unsplash.com/1600x900/?nature') no-repeat center center/cover;
-            content: ""; /* will put the given text before header */
-            position: absolute;
-            top:0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1; /*If not done, will hide all elements*/
-            opacity: 0.2; /*Lesser Opacity => lighter background*/
-        }
-        .navigation {
-            font-family: 'Times New Roman', Times, serif;
-            font-size: 20px;
-            display: flex;
-        }
-        .item{
-            list-style: none;
-            padding: 20px 23px;
-        }
-        .box{
-            text-align: center;
-            font-size: 40px;
-            color: white;
-            display: none;
-        }
-        /* Media Queries is like an if condition  */
-        @media only screen and (max-width:300px){ /*To support only screen media type and If 0px<= width <=500px then implement the media queries written inside */
-            #box1{
-                background-color: var(--primary-color);
-                display: block;
-            }
-        }
-        @media only screen and (max-width:500px) and (min-width:300px){
-            #box2{
-                background-color: red;
-                display: block;
-            }
-        }
-        @media only screen and (max-width:800px) and (min-width:500px){
-            #box3{
-                background-color: rgb(122, 20, 122);
-                display: block;
-            }
-        }
-        @media only screen and (min-width:800px){
-            #box4{
-                background-color: rgb(255, 196, 0);
-                display: block;
-            }
-        }
-        /* Shadows */
-        .container{
-            display: flex;
-        }
-        .card{
-            padding: 20px 10px;
-            border: 3px solid purple;
-            margin: 25px;
-            background-color: rgb(132, 159, 240);
-            /*  x(+ve)=>right
-                y(+ve)=>bottom
-                x(-ve)=>left
-                y(-ve)=>top  */
-                /* rgba(r,g,b,alpha->to control darkness) */
-            box-shadow: 8px 6px 15px 9px rgba(53, 3, 3, 0.4); /*<x offset> <y offset> <blur-radius> <spread-radius> <color>*/
-            box-shadow: inset -8px -6px 15px 9px rgba(53, 3, 3, 0.4); /* By default shadow is outside box, inset makes it go inside the box instead*/
-            /* box-shadow: 10px 10px green, -10px -10px blue; To give multiple shadows/all sides etc */
-        }
-        .card h2{
-            /* similar to box-shadow */
-            text-shadow: 3px 5px 2px white;
-        }
-    </style>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Animations|Transitions|Transform</title>
 </head>
-<body>
-    <header>
-        <nav class="navbar">
-            <ul class="navigation">
-                <li class="item">Home</li>
-                <li class="item">About</li>
-                <li class="item">Services</li>
-                <li class="item">Contact Us</li>
-            </ul>
-        </nav>
-    </header>
-    <div class="box" id="box1">I'm an iPhone</div>
-    <div class="box" id="box2">I'm an Android</div>
-    <div class="box" id="box3">I'm a tablet</div>
-    <div class="box" id="box4">I'm a widescreen computer</div>
+<style>
+    *{
+        margin: 0px;
+        padding: 0px;
+    }
+    /* Animations and Keyframes */
+    .container {
+        display: flex;
+        background-color: greenyellow;
+        justify-content: center;
+        align-items: center;
+    }
+    .box{ 
+        width: 250px;
+        height: 250px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    #box1 {
+        background-color: green;
+        position: relative;
+        /* animation-name: harry1; */
+        animation-name: harry2;
+        animation-duration: 3s;
+        animation-iteration-count: 50;
+        /* animation-iteration-count: infinite; */
+        /* animation-fill-mode: alternate; [forwards-> final position of animation becomes permanent, alternate-> comes back to original position*/
+        /* animation-timing-function: ease-in-out; [ease-in -> starting slow ending fast, ease-out -> starting fast ending slow, ease-in-out -> slow start slow end] */
+        /* animation-delay: 3s; [animation starts after 3 seconds]*/
+        /* animation-direction: reverse; [alternate, reverse, alternate-reverse etc...] */
 
-    <h2>More on Selectors in CSS</h2>
-    <span>Examples :</span>
-    <ul>
-        <li><strong>div p : </strong>select all paragraphs inside div</li>
-        <li><strong>div > p : </strong>select only paragraphs directly inside div</li>
-        <li><strong>div + p : </strong>select paragraphs jiska pichla sibling div hai</li>
-        <li><strong>input[type='text'] : </strong>select all inputs whose type is text</li>
-        <li><strong>a[target] : </strong>select all anchor texts whose target is set(to anything but set)</li>
-        <li><strong>li:nth-child(3) : </strong>select the 3rd child/element inside li</li>
-        <li><strong>li:nth-child(2n+0) : </strong>select every 2nd ,i.e child at positions of 2n inside li (n=0,1,2...)[Position starts from 1 not 0]</li>
-        <li><strong>li:nth-child(odd) : </strong>select all child at odd positions inside li</li>
-    </ul>
-    <hr>
+        /* These properties can be set using this shorthand */
+        /* animation: animation-name animation-duration animation-timing-function animation-delay animation-iteration-count animation-fill-mode; */
+        /* animation: harry 5s ease-in 1s 12 backwards; */
+
+    }
+    @keyframes harry2 {
+        0%{
+            top:0px;
+            left:0px;
+        }
+        25%{ /* After completing 25% of animation do this */
+            top: 250px;
+            left: 0px;
+        }
+        75%{
+            top: 250px;
+            left: 250px;
+        }
+        88%{
+            top: 0px;
+            left: 250px;
+        }
+        100%{
+            top: 0px;
+            left: 0px;
+        }
+    }
+    @keyframes harry1 {
+        from {
+            width: 200px;
+        }
+
+        to {
+            width: 1400px;
+        }
+    }
+
+    /* Transitions */
+    #box2{
+        background-color: grey;
+        /* transition-property: background-color; */
+        transition-property: all;
+        transition-duration: 3s;
+        /* transition-timing-function: ease-in; */
+        /* transition-delay: 2s; */
+        /* transition: <tproperty> <tduration> <ttiming_func> <tdelay>; */
+    }
+    #box2:hover{
+        background-color: red;
+        height: 400px;
+        width: 400px;
+        font-size: 50px;
+        border-radius: 150px;
+    }
+
+    /* Transform */
+    #box3{
+        background-color: hotpink;
+        border: 2px solid black;
+        transition: all 1s;
+    }
+    #box3:hover{
+        transform: rotate(45deg);
+        /* transform: skew(45deg); tirchha strech kr deta hai*/
+        /* transform: scale(3); utna times bigger kar deta hai*/ 
+        /* transform: translate(100px,20px); x and y coordinates, moves to that point in x-y plance */
+    }
+</style>
+
+<body>
     <div class="container">
-        <div class="card" id="card-1">
-            <h2>Card1</h2>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi sequi, officiis provident incidunt deleniti ducimus numquam, aut maxime sapiente est voluptate velit ratione iure, et adipisci atque nemo omnis necessitatibus?</p>
+        <div class="box" id="box1">
+            This is box1
         </div>
-        <div class="card" id="card-2">
-            <h2>Card2</h2>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi sequi, officiis provident incidunt deleniti ducimus numquam, aut maxime sapiente est voluptate velit ratione iure, et adipisci atque nemo omnis necessitatibus?</p>
+        <div class="box" id="box2">
+            This is box2
         </div>
-        <div class="card" id="card-3">
-            <h2>Card3</h2>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi sequi, officiis provident incidunt deleniti ducimus numquam, aut maxime sapiente est voluptate velit ratione iure, et adipisci atque nemo omnis necessitatibus?</p>
+        <div class="box" id="box3">
+            This is box3
         </div>
     </div>
 </body>
+
 </html>
