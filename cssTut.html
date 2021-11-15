@@ -5,119 +5,88 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Animations|Transitions|Transform</title>
+    <title>CSS Grid</title>
 </head>
 <style>
-    *{
-        margin: 0px;
-        padding: 0px;
+    .grid{
+        display: grid;
+        /* Make 3 columns of given widths */
+        /* grid-template-columns: 300px 100px 100px;  */
+        /* grid-template-columns : 300px auto 100px; first col 300px third col from end 100px and middle remaining space for second column */
+        /* grid-template-columns: repeat(3, auto); /* Divide into 3 col of equal widths(of whole width) */
+        /* grid-template-rows: 5fr; /* First row 5fr*/
+        /* grid-auto-rows: 10fr; /*Remaining rows 10fr */
+        /* grid-template-rows: repeat(3, 1fr ); */
+        grid-gap: 2rem; /* gap between the grid boxs */
+        /* justify-content: center; */
+        /* For responsive, tries to take 100px width but if screen size doesn't allow then box goes to next row, and min width is 50px */
+        grid-template-columns: repeat(auto-fit, minmax(50px, 100px)); /* can be in fr also */
     }
-    /* Animations and Keyframes */
-    .container {
-        display: flex;
-        background-color: greenyellow;
-        justify-content: center;
-        align-items: center;
-    }
-    .box{ 
-        width: 250px;
-        height: 250px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-    #box1 {
-        background-color: green;
-        position: relative;
-        /* animation-name: harry1; */
-        animation-name: harry2;
-        animation-duration: 3s;
-        animation-iteration-count: 50;
-        /* animation-iteration-count: infinite; */
-        /* animation-fill-mode: alternate; [forwards-> final position of animation becomes permanent, alternate-> comes back to original position*/
-        /* animation-timing-function: ease-in-out; [ease-in -> starting slow ending fast, ease-out -> starting fast ending slow, ease-in-out -> slow start slow end] */
-        /* animation-delay: 3s; [animation starts after 3 seconds]*/
-        /* animation-direction: reverse; [alternate, reverse, alternate-reverse etc...] */
-
-        /* These properties can be set using this shorthand */
-        /* animation: animation-name animation-duration animation-timing-function animation-delay animation-iteration-count animation-fill-mode; */
-        /* animation: harry 5s ease-in 1s 12 backwards; */
-
-    }
-    @keyframes harry2 {
-        0%{
-            top:0px;
-            left:0px;
-        }
-        25%{ /* After completing 25% of animation do this */
-            top: 250px;
-            left: 0px;
-        }
-        75%{
-            top: 250px;
-            left: 250px;
-        }
-        88%{
-            top: 0px;
-            left: 250px;
-        }
-        100%{
-            top: 0px;
-            left: 0px;
-        }
-    }
-    @keyframes harry1 {
-        from {
-            width: 200px;
-        }
-
-        to {
-            width: 1400px;
-        }
-    }
-
-    /* Transitions */
-    #box2{
-        background-color: grey;
-        /* transition-property: background-color; */
-        transition-property: all;
-        transition-duration: 3s;
-        /* transition-timing-function: ease-in; */
-        /* transition-delay: 2s; */
-        /* transition: <tproperty> <tduration> <ttiming_func> <tdelay>; */
-    }
-    #box2:hover{
+    .box{
+        /* height: 100px;
+        width: 100px; */
         background-color: red;
-        height: 400px;
-        width: 400px;
-        font-size: 50px;
-        border-radius: 150px;
-    }
-
-    /* Transform */
-    #box3{
-        background-color: hotpink;
         border: 2px solid black;
-        transition: all 1s;
+        padding: 15px 5px;
     }
-    #box3:hover{
-        transform: rotate(45deg);
-        /* transform: skew(45deg); tirchha strech kr deta hai*/
-        /* transform: scale(3); utna times bigger kar deta hai*/ 
-        /* transform: translate(100px,20px); x and y coordinates, moves to that point in x-y plance */
+    .box:first-child{
+        /* spans the size of box-1 from line 1 to 3 in both row and col*/
+        /* grid-column-start: 1;
+        grid-column-end: 3;
+        grid-row-start: 1;
+        grid-row-end: 3; */
+        /* spans the size of box-1 from col 1 to 2 and row 1 to 2*/
+        /* output is same as for the above 4 commands */
+        /* grid-column: 1 / span 2;
+        grid-row: 1 / span 2; */
+    }
+    .container{
+        display: grid;
+        grid-gap: 1rem;
+        /* To make responsive, we can change these areas accordingly using media queries */
+        grid-template-areas:  /* First whole row navbar, second row 3fr section and 1fr aside */
+        'navbar navbar navbar navbar'
+        'section section section aside';
+
+    }
+    .item{
+        background-color: rgb(22, 127, 168);
+        border: 3px solid black;
+    }
+    #navbar{
+        grid-area: navbar;
+    }
+    #section{
+        grid-area: section;
+    }
+    #aside{
+        grid-area: aside;
     }
 </style>
 
 <body>
+    <div class="grid">
+        <div class="box">This is box-1</div>
+        <div class="box">This is box-2</div>
+        <div class="box">This is box-3</div>
+        <div class="box">This is box-4</div>
+        <div class="box">This is box-5</div>
+        <div class="box">This is box-6</div>
+        <div class="box">This is box-7</div>
+        <div class="box">This is box-8</div>
+        <div class="box">This is box-9</div>
+    </div>
     <div class="container">
-        <div class="box" id="box1">
-            This is box1
+        <div id="navbar" class="item">
+            Home About Contact Us
         </div>
-        <div class="box" id="box2">
-            This is box2
+        <div id="section" class="item">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique nulla dolorem ratione corrupti fugiat illo facilis voluptatem consequuntur? Libero eaque, excepturi reiciendis reprehenderit sit ullam quod voluptate doloremque! Eos tempora, nam perspiciatis corrupti consequatur autem eligendi ea soluta labore ducimus voluptas ex quos animi provident ut veniam deleniti vitae facere?
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Itaque temporibus mollitia quae, expedita sapiente eos maiores esse autem dolore, quas, non soluta inventore illo quo a id perferendis! Fugiat consequatur pariatur, sapiente ex eaque ipsa earum dignissimos sed impedit voluptatem, ducimus temporibus tempore. Nam corporis doloribus quis vel ipsum, dolorum saepe similique quia repellendus aspernatur, rerum mollitia nihil consequuntur maxime et quam soluta laboriosam laborum quasi cum magnam laudantium. Dignissimos odio consequatur voluptates magnam eius fugit minima quidem esse, iure, laborum aut fugiat, dolore delectus velit tempora cum necessitatibus natus corporis. Odit accusamus quod similique nam voluptatibus, corporis id perspiciatis.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus corporis omnis, est provident ipsum corrupti, sequi beatae veritatis atque cumque ipsam voluptates iusto recusandae laborum eveniet saepe ullam. Error ex doloremque minima quam molestiae labore quasi deleniti a soluta provident modi at temporibus, reprehenderit explicabo facilis rerum enim, sed animi. Sed, aut! Sit excepturi corrupti, nemo fugit molestias velit natus, debitis animi rerum, quisquam dolores! Illo optio eveniet iusto minus possimus tempora ut adipisci numquam nobis dolores, soluta nemo consequuntur eos, officia quidem ab iure. Sint et officia mollitia, delectus nobis magni error laborum itaque asperiores in sequi, qui dolorem.
         </div>
-        <div class="box" id="box3">
-            This is box3
+        <div id="aside" class="item">
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Libero asperiores iure voluptate, officiis ipsum quam maiores deserunt sed, laudantium ab tempora amet. Nostrum provident laborum nesciunt, assumenda obcaecati iure? Nihil consequuntur nesciunt eum odit corrupti cupiditate tenetur eligendi unde reprehenderit pariatur illum cum delectus laborum voluptatem, dolorum voluptate ducimus! Laudantium?
         </div>
     </div>
 </body>
