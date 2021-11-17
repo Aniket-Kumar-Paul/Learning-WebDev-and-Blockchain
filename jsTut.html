@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basic JS</title>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Heading</h1>
+        <div id="content">
+            <!-- insert element using getElementById in script -->
+        </div>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem, totam!</p>
+    </div>
+
+    <script src="JSTut.js"></script>
+
+    <script>
+
+        //Dynamic Typing(No need to explicity mention data type)
+        var a = 78;
+        var name = "Aniket";
+        c = 34.55 //semicolon is optional
+        c = -c; //c=-34.55
+        let var1 = true;
+        // Null: It is the intentional absence of the value. It is one of the primitive values of JavaScript. 
+        // Undefined: It means the value does not exist in the compiler. It is the global object.
+        let var2 = null;
+        let var3; //undefined
+        let var4 = undefined; //same as var3
+        console.log("Value of c is " + c);  //shows this message in console
+
+        //Strings
+        //can use "" '' and also ``->works like formated string in python
+        temp = `${name} has roll no. ${a}`;
+        console.log(temp);
+        var y = new String("Hello"); //creating string using constructor
+        console.log(y);
+
+        //String Functions
+        var strg = "This is a string ";
+        var len = name.length;
+        var position = strg.indexOf('is'); //position = 2 (gives first occurence of substring)
+        position = strg.lastIndexOf('is'); //position = 5
+        //slice can take -ve indices but substring can't
+        var sub1 = strg.slice(1, 6); //his i (from index 1 to 5)
+        var sub2 = strg.substring(1, 6);//his i
+        var sub3 = name.substr(2, 3)//ike (start at index 2 and print 3 characters)
+        console.log(sub1, sub2, sub3);
+        var newstr = strg.replace('string', 'note');//This is a note [*no change in orignal string*]
+        console.log(strg.toLowerCase(), strg.toUpperCase());
+        console.log(strg.trim()); //same as strip in python
+        var char2 = strg.charAt(2); //i
+        char2 = strg[2]; //i
+        char2 = strg.charCodeAt(2); //105 (returns ascii code of character at that index)
+
+        //insert in HTML using JS
+        document.getElementById('content').innerHTML = '<h3>JS Heading</h3>'
+
+        //Scope - var(default) => global, let => local
+        //[NOTE: You can declare same variable using var multiple times, but with let, only once]
+        let x = 5;
+        x = 10;
+        const num = 6;
+        //a = 9; // will give error cant change const
+        //To use global inside a funtion
+        let globalLet = "This is a global variable";
+        function fun() {
+            let globalLet = "This is a local variable";
+            console.log(window.globalLet); // This is a global variable
+        }
+        fun();
+
+        //Conditionals
+        let age = 8;
+        if (age > 18) {
+            console.log("Can Drink");
+        }
+        else if (age == 18) {
+            console.log("Wait one more year");
+        }
+        else {
+            console.log("can't drink");
+        }
+        switch (age) {
+            case 18:
+                console.log('Age is 18');
+                break;
+            default:
+                console.log('Age is not 18');
+                break;
+        }
+
+        //Object :- Key value pairs, similar to dictionary
+        let employee = {
+            name: "Harry",
+            salary: 1000,
+            "curr age": 25 //use "" if variable includes space
+        }
+        console.log(employee);
+        console.log(employee['curr age']);
+        console.log(employee['salary']); // or employee.salary
+
+        //Array
+        let arr = [1,4.4,2,name,"Hi",9,undefined];
+        //let arr = new Array(1,4.4,name,"Hi",undefined); //same as above
+        console.log(arr);
+        console.log(arr[3]); //Hi
+        arr.push(10); //append
+        console.log(arr.length);
+        console.log(arr.sort()); //also sorts/changes the original array
+        let arr1 = [5];
+        console.log(arr1); //[5], array of length 1 with element 5
+        let arr2 = new Array(5);
+        console.log(arr2); //[empty × 5], array of length 5 (all empty/undefined)
+        arr2.push("Hi");
+        console.log(arr2); //[empty × 5, 'Hi']
+
+        //Loops
+
+        //FOR
+        let friends = ["Aniket","Kasak","Aysuh","Kavya","Satwika"];
+        //1
+        // for(let i=0; i < arr.length; i++){
+        //     console.log("Hello "+friends[i]);
+        // }
+        // OR 
+        //2
+        for(element of friends){
+            console.log("Hello "+element);
+        }
+        // OR
+        //3
+        // friends.forEach(function f(element){
+        //     console.log("Hello "+element);
+        // });
+        // For array, use 'of' . and for objects, use 'in'
+        for(key in employee){
+            console.log(`The ${key} of employee is ${employee[key]}`);
+        }
+
+        //WHILE
+        let i=0;
+        while(i<4){
+            console.log(i);
+            i++;
+        }
+
+        //DO WHILE
+        do{
+            console.log(i);
+            i++;
+        }while(i<10);
+
+        //Functions
+        function greet(naam, day = "Sunday"){
+            console.log(naam + " Hi, How are you?");
+            console.log("Today is " + day);
+        }
+        greet("Ayush"); //Ayush Hi, How are you? Today is Sunday
+        greet("Ankit","Monday"); //Ankit Hi, How are you? Today is Monday
+        function sum(a,b,c){
+            let d = a + b + c;
+            return d;
+        }
+        let result = sum(1,4,5); //result = 10
+        
+    </script>
+</body>
+
+</html>
