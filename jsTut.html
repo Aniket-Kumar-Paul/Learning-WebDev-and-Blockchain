@@ -5,149 +5,25 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interaction(Alert,Prompt,Confirm)|Manipulationg DOM|Events|Set/Clear Timeout and Interval|Date & Time|Arrow Functions|Math Object</title>
+    <title>JSON</title>
 </head>
 
 <body>
-    <div id="main" class="container">
-        First Container
-        <ul id="nav">
-            <li>Home</li>
-            <li>About</li>
-            <li>Services</li>
-            <li>Contact Us</li>
-        </ul>
-    </div>
-    <div class="container">
-        Second Container
-    </div>
-    <hr>
-    <!-- Events -->
-    <div class="events">
-        Browser Events:
-        <div id="contents">
-            <li>Click</li>
-            <li>Context Menu</li>
-            <li>Mouse over/out/down/up/move</li>
-            <li>Submit</li>
-            <li>Focus</li>
-            <li>DOMContent Loaded</li>
-            <li>CSS Transition End, etc..</li>
-        </div>
-    </div>
-    <button id="btn" onclick="toggleHide()">Show/Hide</button> <!--On clicking Button, run toggleHide() function-->    
-    <hr>
-    <div class="showtime">
-        Time right now is : <span id="time"></span>
-    </div>
+    <div class="container">This is a container</div>
     
     <script>
-        // Interactions - Opens a small modal window(can't access page until this goes)
-        //Alert
-        alert("This is a new Alert."); //Alert doesn't return anything/returns undefined
-        //Prompt
-        let name = prompt("What is your name?","Guest"); //(<Question>,<Default value>), returns the entered value
-        //Confirm
-        let deletePost = confirm("Are you sure to delete this Post?"); //returns true or false
-        if(deletePost){
-            console.log("Post Deleted");
-        }else{
-            console.log("Post not Deleted");
+        //JSON
+        let jsonObj = {
+            name: "Aniket",
+            roll: 21,
+            food: "puchka"
         }
-
-        //Manipulating DOM
-        let m = document.getElementById('main');
-        console.log(m);
-        let c = document.getElementsByClassName('container'); //will return a HTMLCollection
-        console.log(c);
-        console.log(c[0]); //will show the first element with class container
-        console.log(nav.innerHTML); //shows HTML inside the nav id
-        nav.innerHTML = "<li>Dynamic Element</li>"; //all innerHTML of nav id gets replace by the given <li>
-            //Using CSS selectors
-        let sel = document.querySelector('.container'); //returns only the first element/block with class container
-        // sel = document.querySelectorAll('.container'); //shows all class containers instead of just one as above
-        console.log("Selector returns ",sel);
-        sel = document.querySelector('#nav>li');
-        console.log(sel);
-
-        //Events
-        function toggleHide(){
-            let btn = document.getElementById('btn');
-            let contents = document.getElementById('contents');
-            if(contents.style.display != 'none'){
-                contents.style.display = 'none';
-            }
-            else{
-                contents.style.display = 'block';
-            }
-        }
-        let contents = document.getElementById('contents');
-        contents.addEventListener('mouseover', function message(){
-            console.log('Mouse Inside Contents');
-        });
-        
-        //setTimeout -> run a function ONCE after an interval of time
-        //clearTimeout -> cancels a timeout previously established by calling setTimeout() 
-        //setInterval-> run a function REPEATEDLY after an interval of time
-        function greet(name){console.log("Hello "+name);}
-        let timeOut = setTimeout(greet, 5000, "Aniket"); //(<func name>, <time in ms>, <func arguments>), return a unique ID
-        //clearTimeout(timeOut); //can be used where we want to cancel the scheduled setTimeout immediately
-        let intervalID = setInterval(greet, 3000, "Harry");
-        // clearInterval(intervalID);
-        
-        //Date & Time
-        //Making a simple live clock
-        function displayTime(){
-            let time = new Date();
-            document.getElementById('time').innerHTML = time;
-        }
-        setInterval(displayTime, 1000); //will show continuous time in webpage each 1 sec changing
-        let dt1 = new Date('2029-09-29'); //will return all the details of this date
-        // let dt2 = new Date(year, month, date, hours, minutes, seconds, milliseconds);
-        let dt2 = new Date(2019, 12, 30, 1, 30, 5, 30);
-        console.log(dt1);
-        // dt2.getDate()
-        // dt2.getFullYear()
-        // etc...
-        let day = dt1.getDay(); //returns 0-6 for Sun-Sat
-        console.log("Day:",day);
-        dt1.setDate(5); //Date will be changed to 5
-        //can be used to see difference in time by subtracting two date.now()
-        
-        //Arrow Functions - A shortcut for using functions
-        // let greet = ()=>{
-        //     console.log('Good Morning');
-        // }
-        // setTimeout(greet, 3000);
-        // OR
-        setTimeout(() => {
-            console.log('Good Morning');
-        }, 3000);
-        let sum = (a,b)=>a+b;
-        console.log(sum(5,4));
-        let obj1 = {
-            greeting: "Good Night",
-            names: ["Aniket","Kasak","Ayush","Shiksha","Neha"],
-            speak(){
-                this.names.forEach((name)=>{
-                    console.log("Hii",name,this.greeting); //Lexical this: here "this" is pointing to obj1, but if it was a function instead of arrow function then this would point to the function itself
-                });
-            }        
-        }
-        obj1.speak();
-
-        //Math Object
-        let n = Math;
-        console.log("Printing Math Object\n",n); //will show all available funcitons, constants etc in Math Object
-        console.log("Value of e is ",Math.E); //will print value of e
-        let a = 5.689;
-        console.log("Rounded value of 5.689 is",Math.round(a)); //6
-        console.log("square of 3 is",Math.pow(3,2)); //9
-        console.log("Minimum Value of 4,6,2,5.4,1.9,3 is ",Math.min(4,6,2,5.4,1.9,3)); //similarly use max()
-        console.log("Generating a Random number between less than 1", Math.random());
-        console.log("Generating a random integer from 1 to 100",Math.floor(Math.random()*100)+1);
-        console.log("Generating a random integer from 0 to 100",Math.floor(Math.random() * 101));
-        
+        console.log(jsonObj); 
+        let myjsonStr = JSON.stringify(jsonObj); //returns a string of the object, now we can perform string functions on it
+        myjsonStr = myjsonStr.replace("Aniket","Ayush");
+        console.log(myjsonStr);
+        newjsonObj = JSON.parse(myjsonStr); //takes a json string and returns object
+        console.log(newjsonObj);
     </script>
 </body>
 
