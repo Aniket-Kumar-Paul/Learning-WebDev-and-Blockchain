@@ -1,13 +1,32 @@
-// JavaScript
-// ->client side scripting language
-// ->can act as both client as well as server side language
+//Synchronous/Blocking - line by line execution
+//Asynchronous/Non-Blocking - line by line execution not guarantedd, callbacks will fire
 
-// What can we do IN-BROWSER JS?
-// ->Add new HTML and change existing HTML from DOM(Document Object Model)(html, style, body, navbar, div etc.)
-// ->React to Events(response from server, key press, mouse movement etc .)
-// ->AJAX(Asynchronous JS And XML) Requests(GET/POST requests) - helps in changing contents of webpage dynamically without Reloading
-// ->Get & Set Cookies & Use localStorage
+// const fs = require("fs"); //import module fs
+// //Synchronous
+// let text = fs.readFileSync("oldText.txt", "utf-8"); //returns contents of oldText in a string
+// console.log("Synchronous\n",text);
+// text = text.replace("file system","fs");
+// fs.writeFileSync("newText.txt",text);
+// //Asynchronous
+// fs.readFile("oldText.txt","utf-8",(err,data)=>{
+//     console.log("\nAsynchronous\n",err,data);
+// }); //First read file then call the callback function, will take time, thus, below statements will be executed until then
+// console.log("New Message"); //This will be printed before asynchronous one
+// fs.readFile("oldFile.txt","utf-8",(err,data)=>{
+//     console.log("\nAsynchronous\n",err,data);
+// });
 
-// What can't we do IN-BROWSER JS?
-// ->read/write to & from computer hard disk without Permission
-// ->can't access cross site data/same OriginPolicy by default
+//Serving HTML File using NodeJS
+const http = require('http');
+const fs = require('fs');
+const hostname = '127.0.0.1';
+const port = 80;
+const fileContent =  fs.readFileSync('htmlTut.html');
+const server = http.createServer((req, res)=>{ //request, response
+    console.log(req.url);
+    res.writeHead(200, {'Content-type':'text/html'}); //200-status code
+    res.end(fileContent);
+});
+server.listen(port, hostname, ()=>{
+    console.log(`Server running at http://${hostname}:${port}/`);
+});
