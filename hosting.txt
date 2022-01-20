@@ -1,0 +1,81 @@
+#Linux commands :-
+>ufw status : firewall status
+
+#to use server(ubuntu) in windows powershell :-
+>ssh root@<ip> 
+
+#Install LAMP stack(in server) - search on digital ocean for how to? (install only apache is enough)
+
+#html file location :-
+>cd /var/www/html/ : index.html
+>vim index.html -> i(to edit) -> esc -> shift + : -> wq -> Enter (save and exit)
+>wget <link> : to download from link
+
+#Install Filezilla FTP Client(in your computer)
+-> Open filezilla -> give server host ip, username, password and port(22) -> quickconnect
+
+#Buy a domain name
+-> Edit records ->
+Type: A
+Name: @
+Value: <ip of server>
+TTL: 600
+
+
+#Virtual Hosts :- run multiple websites on one web server
+-> search how to set up apache virtual hosts on ubuntu ( in digitalocean )
+>cd /etc/apache2/sites-available/ : location of virtual hosts files
+>ls
+>vim 000-default.conf
+->edit the comment(remove #) ServerName with www.domainname.com and DocumentRoot with the path /var/www/<name>
+->also add ServerAlias domainname.com
+
+->similarly make different .conf files for different domains
+>cp 000-default.conf <new conf file>.conf
+>vim <new conf file>.conf
+
+>sudo a2ensite <name.conf> : enables the conf file
+>sudo a2dissite <name.conf> : disables the conf file
+>systemctl reload apache2 OR service apache2 restart: activate the new config
+
+
+#Deploy NodeJs Apps : Search how to set up a node.js application for productoin on ubuntu (digitalocean)
+...Also do, 
+>ufw allow <port no>
+
+After installing pm2
+>pm2 start <file>.js --name <some name>
+>pm2 ls
+
+To keep the pm2 apps running even after rebooting server, use :-
+>pm2 startup systemd
+>pm2 save
+
+To stop :-
+>pm2 stop <some name>
+
+#Connect domain name with nodejs apps using apache : cloudbooklet.com/setup-node-js-with-apache-proxy-on-ubuntu-18-04-for-production
+
+#Hosting full website(nodejs) example
+-> copy all files to a folder in server using filezilla (except node modules)
+-> go to that folder in ubuntu server then,
+>npm install
+>ufw allow <port>
+
+-> install mongodb (digitalocean search how to), then 
+>node app.js
+
+
+#Getting free https ssl certificate
+-> search (let's encrypt + digitalocean) in google
+
+
+
+
+  
+
+
+
+
+
+

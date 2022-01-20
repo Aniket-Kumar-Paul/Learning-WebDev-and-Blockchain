@@ -1,0 +1,42 @@
+#mongod is the "Mongo Daemon" it's basically the host process for the database. 
+When you start. mongod you're basically saying "start the MongoDB process and run it in the background". 
+... mongo is the command-line shell that connects to a specific instance of mongod.
+
+Database - Database
+Tables   - Collections
+Rows     - Documents/Objects
+
+>db
+>use <dbname>
+>show dbs
+>show collections
+
+
+// Insertion
+// db.<collection name>.insert(<objects>)
+>db.text.insert({"name":"aniket"})
+>db.items.insertOne({name: "Realme 7", price:20999, rating:4.5, qty:250, sold:103})
+// Attributes can be different
+>db.items.insertMany([{name: "Realme 7", price:20999, rating:4.5, qty:250, sold:103}, 
+			{name: "MotoG 8s", price:12999, rating:2.8, qty:590, sold:60, country:"china"}])
+
+// Displaying results
+>db.items.find(<{filter}>, <{projections}>)
+>db.items.find()                                                 -> display all objects inside items collection
+>db.items.find({rating: 2.8})                                    -> show objects with rating 2.8
+>db.items.find({rating: {$gte: 2.8}, price: {$lt: 10000}})       -> show objects with rating >= 2.8 AND price < 10000
+>db.items.find({							
+		$or:[{rating: {$gte: 2.8}, price: {$lt: 10000}}] -> show objects with rating >= 2.8 OR price < 10000
+		})
+>db.items.find({rating:2.8}, {name:1, qty:1})                    -> show only names and qty of objects with rating 2.8
+
+// Deletion
+>db.items.deleteOne({name:"Realme 7"})  -> delete only the first(one) match
+>db.items.deleteMany({name:"Realme 7"}) -> delete all matches
+
+// Updation
+// db.items.updateOne(<{selector}>, <{$set: <{updation}}>)
+>db.items.updateOne({name: "Realme 7"}, {$set: {price: 24999, rating:4.8}})
+>db.items.updateMany({name: "Realme 7"}, {$set: {price: 24999, rating:4.8}})
+
+Use mongoose documentation to use mongoose : # model me jo naam dete h -> collection, objects us model k under aate hai

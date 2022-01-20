@@ -1,1 +1,0 @@
-console.log("This is index.js inside static folder.")
