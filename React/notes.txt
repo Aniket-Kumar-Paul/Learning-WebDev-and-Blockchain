@@ -1,0 +1,48 @@
+> npx create-react-app <app name>
+
+# To start server > npm start
+
+-> change language mode to react in vs code to use emmet
+
+# JSX (JS XML or Javascript Syntax Extension) : allows to write HTML in react
+-> in JSX use {to write js code / variable value etc.}
+-> must be wrapped in atleast <>...</> empty tags or use div
+
+# HTML -> JSX
+    > Replace "class" with "className"
+    > Put a / at end of tags which don't have a closing tag. Eg: <input ...... />
+    > Replace "for=" with "htmlFor="
+    > <div style="border: 1px solid red"> ---> <div style={{border: '1px solid red'}}>
+
+# Components in React : Class based, Function based
+
+# Using Bootstrap
+    > include the script src js link and css link from bootstrap starter template in public/index.html
+    > copy the required html from bootstrap and paste in app.js (make sure to convert into JSX)
+    > OR, go to "react-bootstrap.github.io/getting-started/introduction" for better optimization
+
+# App.js will have the overall structure
+
+# Inside src make MyComponents folder -> make Header.js 
+                                      -> in Header.js use rfcp (react function component) or other shortcuts by ES7react exetension
+                                      -> customise the function accordingly and return the header/navbar JSX code
+                                      -> also, import proptypes using impt and at end set the default props and proptypes.
+                                      -> In App.js, - import Header from "./MyComponents/Header"
+                                                    - and App(){return (<> <Header/> </>);}
+                                      -> Similarly make other components and add to App.js
+
+# Props - JS object 
+
+# ES7+ react extensions used :- 
+    rfcp or rafc - react function component
+    impt - import proptypes..
+
+# Updating DOM -> search for using the use state hook etc..
+
+# For rendering the about page between the header and footer without reloading the page:-
+    >npm i react-router-dom
+    >search reactrouter in google for docs
+
+# In Header.js -> import {Link} from "react-router-dom"; -> change all <a></a> to <Link></Link>, href= to to=
+
+# To build the app for production: > npm run build

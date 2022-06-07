@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+
+/* .btn {
+    @apply bg-purple-800 px-3 mx-2 py-2 rounded-2xl text-white hover:bg-fuchsia-700;
+} */
+
+@tailwind utilities;
+
+@layer components { /* Add below classes to/(at end of) the components layer */
+    .btn {
+        @apply bg-purple-800 px-3 mx-2 py-2 rounded-2xl text-white hover:bg-fuchsia-700;
+    }    
+}

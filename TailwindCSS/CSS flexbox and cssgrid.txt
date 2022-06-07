@@ -1,0 +1,20 @@
+Flexbox: 
+> justify-content
+> align-items
+> flex-direction
+> order
+> align-self
+> flex-wrap
+> flex-flow
+> align-content
+
+CSS Grid:
+> grid-template-columns: %, px, fr, repeat(times, size)
+> grid-template-rows: %, px, fr
+> grid-template: rows / columns
+> grid-column-start
+> grid-column-end
+> grid-column: start / end
+> grid-row: start / end
+> grid-area: row start/ col start/ row end/ col end
+> order: -ve,0,+ve

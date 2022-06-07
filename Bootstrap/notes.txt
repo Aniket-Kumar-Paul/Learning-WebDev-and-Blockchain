@@ -1,0 +1,13 @@
+# Grid system :
+By default, 1 row has 12 columns
+therefore the class "col-3" => use 3 columns out of 12
+
+# col : xtra small
+  col-sm : small
+  col-md : medium
+  col-lg : large
+  col-xl : xtra large
+
+  "col-sm-5" => in small devices, use 5 columns out of 12
+
+# "my-4" => 4px margin in y axis

@@ -1,0 +1,15 @@
+NextJS
+- react frontend development web framework by Vercel
+- enables functionality such as server-side rendering & static site generation
+- Unlike traditional react app where the entire application is loaded and rendered on the client, 
+  NextJS allows the first page load to be rendered by the server, which is great for SEO  & performance.
+
+# You can't import the globals.css directly into any component(except _app.js), any component's css must have .module.css extension
+# No need of router, simply put components in the pages folder
+# make a separate components folder, components that don't have to route will be in this folder else in pages folder
+# Convention - use lowercase for pages and Upper case(first letter) for other components
+
+# 3 methods to fetch data - getStaticProps : fetch at build time 
+                          - getServersideProps : fetch data on every request (slow)
+                          - getStaticPaths : dynamically generate paths based on data we are fetching
+                           

@@ -1,0 +1,14 @@
+MAIN TOPICS:
+1. ACTION - what to do?
+2. REDUCER - how to do? (takes current state & action as input and returns new state)
+3. STORE - object which holds the state of the application
+4. FUNCTIONS ASSOCIATED WITH STORE - createStore(), dipatch(action), getState()
+
+> npx create-react-app reduxapp
+> npm i redux react-redux
+
+- create the actions
+- create the reducers
+- combine the reducers into one root reducer
+- create the store using the root reducer
+- use the store in index.js(main program) using Provider and useSelector

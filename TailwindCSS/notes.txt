@@ -1,0 +1,11 @@
+- custom class example using square brackets:- my-[67px]
+- states:
+	- hover
+	- focus
+	- active
+	[https://stackoverflow.com/questions/1677990/what-is-the-difference-between-focus-and-active]
+- @apply - for custom class
+- @layer
+- customizing tailwindCSS using config file
+
+	

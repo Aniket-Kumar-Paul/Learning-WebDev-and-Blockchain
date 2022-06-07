@@ -1,0 +1,11 @@
+why typescript?
+- lesser runtime errors
+- helps to work with entities
+- browser can't directly run typescript. it needs to be transpiled in JS
+
+# to compile TS to JS (with watch flag) -> tsc <filename> -w
+  OR, make a tsconfig.json file and include -> "compilerOptions": {
+                                                    "rootDir": "./src",
+                                                    "outDir": "./dist"
+                                                }
+    and put all .ts files in src and run -> tsc -w -> all js files will be generated in dist folder
