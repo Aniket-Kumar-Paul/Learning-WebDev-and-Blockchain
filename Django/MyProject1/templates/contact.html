@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Contact Us
+{% endblock title %}
+
+{% block body %}
+<b>Contact Us</b>
+
+<form method="post" action="/contact">
+    {% csrf_token %}
+
+    {% comment %} csrf_token is for authentication {% endcomment %}
+    {% comment %} NOTE: name is the attribute by which Django will know what it is {% endcomment %}
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input type="text" class="form-control" id="name" name="name" placeholder="Enter your name">
+    </div>
+    <div class="form-group">
+      <label for="email">Email address</label>
+      <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com">
+    </div>
+    <div class="form-group">
+      <label for="phone">Contact number</label>
+      <input type="phone" class="form-control" id="phone" name="phone" placeholder="756756756">
+    </div>
+    <div class="form-group">
+      <label for="desc">Tell us why do you want to contact us?</label>
+      <textarea class="form-control" id="desc" name="desc" rows="3"></textarea>
+    </div>
+    <button class="btn btn-primary my-4">Submit</button>
+  </form>
+{% endblock body %}

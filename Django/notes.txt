@@ -1,0 +1,35 @@
+# to make new project
+> django-admin startproject <project name> 
+
+# to create app inside the project
+> python manage.py startapp <app name>
+
+# to create new user
+> python manage.py createsuperuser
+
+# to run server
+> python manage.py runserver
+
+# static folder's files can be accessed directly via url [don't put important stuffs], used for static pages, images etc.
+
+# MVT(Model View Template) Architecture
+
+# - models are similar to tables in database
+  - make models in your apps and register them in admin file
+  - copy the class name from apps.py (Here, HomeConfig) and paste 'home.apps.HomeConfig' in INSTALLED_APPS in settings.py
+  - after any changes in model
+    > python manage.py makemigrations -> create changes and store in a file
+    > python manage.py migrate -> apply the changes
+
+# Running queries using django ORM > python manage.py shell
+  example queries:
+  > from home.module import Contact
+  > Contact.objects.all() // returns all contact objects
+  > Contact.objects.all()[0].email // get email of first contact object
+  > Contact.objects.filter(email="aniket@gmail.com", phone="23432423") // to filter objects with conditions [, means and]
+  
+  > instance = Contact.objects.filter(phone="989023432")[0]
+  > instance.email = "abc@gmail.com"
+  > instance
+
+  > Contact.objects.filter(desc__startswith="this is")
