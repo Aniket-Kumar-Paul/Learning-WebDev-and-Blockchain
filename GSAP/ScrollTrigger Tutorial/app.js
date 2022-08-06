@@ -6,17 +6,15 @@ gsap.to(".square", {
     scrollTrigger: {
         trigger: '.square', 
         start: "top 60%",
-        end: "top 40%",
+        end: "top 30%",
         markers: true,
-
-        // toggleActions: "play     none     none         none", // default actions for below events
-        // Events -->      onEnter  onLeave  onEnterBack  onLeaveBack
-        // Actions --> play, reverse, pause, resume, reset(initial position), complete(final animation positon), none etc..
         toggleActions: "restart reverse none none",
+        scrub: 5,
 
-        // animates only when scrolling(in the scroller range ofcourse), animation stops if scrolling stops
-        // ignores duration attribute
-        // scrub: true/false, duration in sec for smoothness
-        scrub: 5
+        // pin the element at its position(animation will still happen) until the scrolling area ends(area between start and end)
+        pin: true,
+        // pin: ".square2" // the pinned element can be different from the trigger element
+
+        pinSpacing: true // adds padding to the bottom of the pinned element so that overlapping doesn't happen between the trigger and pin element or the pinned element and element below it
     }
 })
