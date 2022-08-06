@@ -1,16 +1,28 @@
 gsap.registerPlugin(ScrollTrigger);
 
-const tl = gsap.timeline({
-    scrollTrigger: {
-        trigger: ".box",
-        markers: true,
-        start: "top 80%",
-        end: "top 30%",
-        scrub: 1
-    }
+ScrollTrigger.create({
+    trigger: ".box",
+    start: "top 80%",
+    end: "top 50%",
+    markers: true,
+    toggleClass: "box-red",
+    
+    // using the toggleActions events directly
+    onEnter: () => console.log("enter!"),
+    onLeave: () => console.log("leave!"),
+    onEnterBack: () => console.log("enterback!"),
+    onLeaveBack: () => console.log("leaveback!"),
+
+    // the ScrollTrigger instance (self) itself has properties/methods like progress, direction, isActive, and getVelocity()
+    // Some other events: onRefresh, onUpdate, onScrubComplete etc..
+    // onRefresh: ({progress, direction, isActive}) => console.log(progress, direction, isActive),
+    onUpdate: (self) => console.log(self) // gets called every time the progress of the ScrollTrigger changes (meaning the scroll position changed)
 })
 
-tl.to(".box", {x:200, duration: 5}) // move right
-  .to(".box", {y:200, duration: 4}) // move down
-  .to(".box", {x:0, duration:3}) // move left
-  .to(".box", {y:0, duration:2}) // move up (back to initial positon)
+// toggleClass can be used in changing colours of navbar for different sections
+// Example - toggle class of nav(target) to nav-active, when top of panel section reaches 6% of viewport
+// ScrollTrigger.create({
+//     start: "top 6%",
+//     trigger: ".panel",
+//     toggleClass: { targets: "nav", className: "nav-active" }
+// })
