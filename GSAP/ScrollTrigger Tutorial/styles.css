@@ -2,24 +2,13 @@ body {
     margin: 0;
 }
 
-.div1, .div2 {
+.box {
+    width: 100px;
+    height: 100px;
+    background-color: skyblue;
+}
+
+.panel {
     height: 100vh;
-}
-
-.div1 {
     background-color: pink;
-}
-
-.div2 {
-    background-color: salmon;
-}
-
-.square {
-    width: 150px;
-    height: 150px;
-    background-color: fuchsia;
-}
-
-.red {
-    background-color: red;
 }
