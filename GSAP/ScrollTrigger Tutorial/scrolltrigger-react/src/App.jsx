@@ -10,7 +10,7 @@ function App() {
   const imgRef = useRef(null);
   useEffect(()=>{
     const el = imgRef.current;
-    
+
     gsap.fromTo(el, {
       rotation: 0
     }, {

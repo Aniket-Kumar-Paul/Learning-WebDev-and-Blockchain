@@ -6,70 +6,26 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GSAP Tutorial</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/ScrollTrigger.min.js"></script>
     <script src="script.js" defer></script>
     <style>
-        body {
-            margin: 0;
+        .box {
+            width: 100px;
+            height: 100px;
+            background-color: steelblue;
+        }
+
+        .fullscreen {
             height: 100vh;
-            display: flex;
-            flex-direction: column;
-            font-size: 3rem;
-            overflow: hidden;
-        }
-
-        .header {
-            height: 15vh;
-            background-color: red;
-        }
-
-        .links {
-            height: 100%;
-            color: white;
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-        }
-
-        .content {
-            flex-grow: 1;
-            display: flex;
-            justify-content: space-between;
-        }
-
-        .sidebar {
-            background-color: green;
-            width: 15vw;
-        }
-
-        .button {
-            font-size: 3rem;
-            align-self: center;
-        }
-
-        .footer {
-            transform: translateY(100%);
-            height: 15vh;
-            background-color: blue;
         }
     </style>
 </head>
 
 <body>
-    <div class="header">
-        <div class="links">
-            <div class="link">Link 1</div>
-            <div class="link">Link 2</div>
-            <div class="link">Link 3</div>
-        </div>
-    </div>
-    <div class="content">
-        <div class="sidebar left"></div>
-        <button class="button">Reverse!</button>
-        <div class="sidebar right"></div>
-    </div>
-    <div class="footer">
-    </div>
+    <div class="fullscreen"></div>
+    <div class="box"></div>
+    <div class="fullscreen"></div>
 </body>
 
 </html>
