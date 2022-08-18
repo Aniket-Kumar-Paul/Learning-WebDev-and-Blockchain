@@ -10,6 +10,12 @@ contract FundMe {
     address[] public funders;
     mapping(address => uint256) public addressToAmountFunded;
 
+    address public owner;
+
+    constructor() {
+        owner = msg.sender; // whoever deployed the contract
+    }
+
     function fund() public payable{
         require(msg.value.getConversionRate() > minimumUSD, "Didn't send enough!");
 
@@ -17,7 +23,7 @@ contract FundMe {
         addressToAmountFunded[msg.sender] += msg.value; 
     }
 
-    function withdraw() public{
+    function withdraw() public onlyOwner{
         // setting funding amount of funders to 0
         for(uint256 funderIndex=0; funderIndex < funders.length; funderIndex++) {
             address funder = funders[funderIndex];
@@ -25,29 +31,19 @@ contract FundMe {
         }
 
         // reset funders array
-        funders = new address[](0); // 0 is size
+        funders = new address[](0);
 
         // withdraw the funds
-        // We can send ether to other contracts by 
-            // - TRANSFER (2300gas, throws error if more gas is used)
-            // - SEND (2300gas, returns bool)
-            // - CALL (forward all gas or set gas, returs bool)
-
-
-        // TRANSFER - transfer funds to address who is calling withdraw function
-        // msg.sender-the address that has originated the call
-        // convert msg.sender from address type to payable address
-        // this -> refers to the whle contract
-        // payable(msg.sender).transfer(address(this).balance); 
-        // transfer automatically reverts transaction if it fails
-
-        // SEND
-        // bool sendSuccess = payable(msg.sender).send(address(this).balance); 
-        //require(sendSuccess, "Send Failed!"); // require is necessary for 'send' to revert the transaction if it fails
-
-        // CALL (recommended to send & receive ethereum)
-        // .call(info about any function call)
         (bool callSuccess, bytes memory dataReturned) = payable(msg.sender).call{value: address(this).balance}(""); // dataReturned will have any values from functions inside .call(..)
         require(callSuccess, "Call Failed");
+    }
+
+    modifier onlyOwner {
+        // _ means the code inside function which which will have this modifier
+        // any function with this modifier will first call the below require statement
+        // and then run the function code
+        // but if _ was above, then first function code is run and then the requrie statement
+        require(msg.sender == owner, "Only Owner can withdraw funds!");
+        _;
     }
 }
