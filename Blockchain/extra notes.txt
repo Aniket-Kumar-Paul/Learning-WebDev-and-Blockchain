@@ -1,0 +1,7 @@
+# checked and unchecked
+- before v0.8.0, unchecked was set by default, which means
+    uint8 public bigNumber = 255; // for 8bits, 255 is max
+    bigNumber = bigNumber+1; // will set bigNumber to 0(lowest number for uint8) as overflow occurs
+- but after v0.8.0, default is checked, which means it will give an error if overflow occurs
+- we can still make something unchecked,
+    Eg: unchecked {bigNumber = bigNumber+1;}
