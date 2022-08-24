@@ -1,7 +1,40 @@
-# checked and unchecked
-- before v0.8.0, unchecked was set by default, which means
-    uint8 public bigNumber = 255; // for 8bits, 255 is max
-    bigNumber = bigNumber+1; // will set bigNumber to 0(lowest number for uint8) as overflow occurs
-- but after v0.8.0, default is checked, which means it will give an error if overflow occurs
-- we can still make something unchecked,
-    Eg: unchecked {bigNumber = bigNumber+1;}
+- install wsl ubuntu
+- open the folder with wsl 
+- Install NVM: curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
+- Install node js: nvm install 16.17.0(nodejs version)
+- nvm --version
+- node --version
+- install solidity+hardhat extension
+- install prettier extension
+- open settings.json and add, 
+    "[solidity]": {
+        "editor.defaultFormatter": "NomicFoundation.hardhat-solidity"
+    },
+    "[javascript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    }
+- go to user settings and check format on save
+
+- To use yarn instead of npm:
+    - corepack enable
+    - yarn --version
+
+- yarn add solc // install solcjs (using solc js to compile the contracts in deploy.js)
+
+// compile the contracts
+- add below to package.json and use yarn compile to compile:
+"scripts": {
+    "compile": "yarn solcjs --bin --abi --include-path node_modules/ --base-path . -o . SimpleStorage.sol"
+  }
+
+// Ganache - similar to javascriptVM in Remix for fake blockchain for testing
+
+// RPC URL of a network(Rinkeby, Goerli etc..) 
+    - Remote Procedure Call URL
+    - stands for connection to a blockchain node that someone is running
+
+// Ethereum JSON-RPC Specification
+    - https://playground.open-rpc.org/
+
+// Go to go-ethereum github to see instructions to run own blockchain node or real ethereum blockchain 
+# Solidity is Synchronous(except when working with oracles)

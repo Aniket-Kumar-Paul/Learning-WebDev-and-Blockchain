@@ -1,9 +1,8 @@
 // SPDX-License-Identifier: MIT
 
-pragma solidity ^0.8.8;
+pragma solidity ^0.8.16;
 
 contract SimpleStorage {
-
     uint256 favoriteNumber;
 
     struct People {
@@ -15,11 +14,12 @@ contract SimpleStorage {
 
     mapping(string => uint256) public nameToFavoriteNumber;
 
-    function store(uint256 _favoriteNumber) public virtual{ // virtual - so that this function can be overrided
+    function store(uint256 _favoriteNumber) public virtual {
+        // virtual - so that this function can be overrided
         favoriteNumber = _favoriteNumber;
     }
-    
-    function retrieve() public view returns (uint256){
+
+    function retrieve() public view returns (uint256) {
         return favoriteNumber;
     }
 
