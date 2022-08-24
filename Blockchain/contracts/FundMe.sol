@@ -3,23 +3,17 @@ pragma solidity ^0.8.8;
 
 import "./PriceConverter.sol";
 
-// For variables, which get set only once(Eg.minimumUSD, owner), 
-// we can use constant, immutable keywords to make it more gas efficient
-// they save gas because these variables are directly stored into the byte code
-// of the contract instead of storage
+// We can save gas by using custom errors instead of using require() which stores strings for error messages
+error NotOwner();
 
 contract FundMe {
     using PriceConverter for uint256;
 
-    // constants must be declared and initialized in same line
-    // constants must be all caps with _
     uint256 public constant MINIMUM_USD = 50 * 1e18;
     
     address[] public funders;
     mapping(address => uint256) public addressToAmountFunded;
 
-    // immutable is similar to constant but can be initialized later
-    // naming convention is using i_ as a prefix
     address public immutable i_owner;
 
     constructor() {
@@ -46,10 +40,37 @@ contract FundMe {
         // withdraw the funds
         (bool callSuccess, bytes memory dataReturned) = payable(msg.sender).call{value: address(this).balance}(""); // dataReturned will have any values from functions inside .call(..)
         require(callSuccess, "Call Failed");
+
+        // revert() -> we can revert transactions anywhere in code
     }
 
     modifier onlyOwner {
-        require(msg.sender == i_owner, "Only Owner can withdraw funds!");
+        // require(msg.sender == i_owner, "Only Owner can withdraw funds!");
+        if (msg.sender != i_owner) { revert NotOwner(); }
         _;
     }
+
+    // What happens if someone sends this contract ETH but without calling fund function ?
+    // we won't be able to track the funders as that happens inside the fund function
+    
+    // to solve this, we can use receive() 
+    // - at most one receive function in a contract
+    // - can't have an argument or return
+    // - must have external visibility and payable state mutability
+    // - can be virtual, override and can have modifiers
+    // - receive function is executed on calling contract with empty calldata, i.e on plain ether transfers
+    // - Eg. via .send or .transfer, payable fallback() function is called if no such function exists
+    // - it must have either receive or fallback function to receive plain ether
+    receive() external payable {
+        fund();
+    }
+
+    // fallback()
+    fallback() external payable {
+        fund();
+    }
+
+    // Overall, if we send plain ether with calldata, fallback() is called, without data receive() is called
+    // if plain ether with no calldata is called, but receive() doesn't exist, fallback is called
+
 }
