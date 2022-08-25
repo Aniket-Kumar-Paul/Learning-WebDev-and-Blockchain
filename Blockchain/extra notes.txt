@@ -1,4 +1,9 @@
-Ethers.js
-- yarn add ethers
+Encrypting:-
+- fir add the private key and any private key password to the .env
+- run encryptKey.js
+- delete the private key and private key password from .env
+- while deploying, use: PRIVATE_KEY_PASSWORD=<password123> node deploy.js
+- to clear command history in linux terminal: history -c
 
-# NOTE: Change server to wsl in Ganache
+Adding prettier as a node module:-
+yarn add prettier prettier-plugin-solidity
