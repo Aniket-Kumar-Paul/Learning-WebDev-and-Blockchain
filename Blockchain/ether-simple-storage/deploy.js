@@ -8,13 +8,7 @@ async function main() {
     const provider = new ethers.providers.JsonRpcProvider(process.env.RPC_URL)
 
     // connect wallet(<private key>, <provider>)
-    // const wallet = new ethers.Wallet(process.env.PRIVATE_KEY, provider);
-    const encryptedJson = fs.readFileSync("./.encryptedKey.json", "utf8")
-    let wallet = new ethers.Wallet.fromEncryptedJsonSync(
-        encryptedJson,
-        process.env.PRIVATE_KEY_PASSWORD
-    )
-    wallet = await wallet.connect(provider)
+    const wallet = new ethers.Wallet(process.env.PRIVATE_KEY, provider)
 
     // to deploy, we need the bin and abi files of the contract (bin,abi gets generated after compiling(yarn compile))
     const abi = fs.readFileSync("./SimpleStorage_sol_SimpleStorage.abi", "utf8")
@@ -26,6 +20,7 @@ async function main() {
     const contractFactory = new ethers.ContractFactory(abi, binary, wallet) // object to deploy
     console.log("Deploying, please wait...")
     const contract = await contractFactory.deploy()
+    console.log(`Contact address: ${contract.address}`)
 
     const currentFavNumber = await contract.retrieve() // retrieve is a view function in SimpleStorage => it won't cost any gas when calling here(outside contract)
     console.log(`Current Favourite Number: ${currentFavNumber.toString()}`) // by default, currentFavNumber will be of type BigNumber

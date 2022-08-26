@@ -1,9 +1,8 @@
-Encrypting:-
-- fir add the private key and any private key password to the .env
-- run encryptKey.js
-- delete the private key and private key password from .env
-- while deploying, use: PRIVATE_KEY_PASSWORD=<password123> node deploy.js
-- to clear command history in linux terminal: history -c
+Deploying to a testnet or mainnet:-
+- we simply need the testnet RPC URL and the account's private key for it
+- for this, we can use geth(go-eth)
+- here, we will use a 3rd party whcih provides blockchain node as a service - alchemy
+- other options can be - infura, quicknode, moralis
 
-Adding prettier as a node module:-
-yarn add prettier prettier-plugin-solidity
+- create an app in alchemy with goerli network and copy the https key and paste in rpc_url in .env
+- get private key from your metamask and paste in private_key in .env
