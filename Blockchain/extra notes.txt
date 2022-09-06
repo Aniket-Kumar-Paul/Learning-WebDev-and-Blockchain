@@ -1,8 +1,12 @@
-Deploying to a testnet or mainnet:-
-- we simply need the testnet RPC URL and the account's private key for it
-- for this, we can use geth(go-eth)
-- here, we will use a 3rd party whcih provides blockchain node as a service - alchemy
-- other options can be - infura, quicknode, moralis
+HardHat - Ethereum Development Environment
+- one of the most popular smart contract development framework
+> yarn init
+> yarn add --dev hardhat
+> yarn hardhat
+> yarn add --dev prettier prettier-plugin-solidity
+> yarn add --dev dotenv
+> yarn add --dev @nomiclabs/hardhat-etherscan // for etherscan verification
 
-- create an app in alchemy with goerli network and copy the https key and paste in rpc_url in .env
-- get private key from your metamask and paste in private_key in .env
+> yarn hardhat compile
+> yarn hardhat run scripts/deploy.js
+> yarn hardhat run scripts/deploy.js --network <network name> (first add the networks in hardhat.config.js)
