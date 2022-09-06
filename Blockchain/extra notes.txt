@@ -6,7 +6,15 @@ HardHat - Ethereum Development Environment
 > yarn add --dev prettier prettier-plugin-solidity
 > yarn add --dev dotenv
 > yarn add --dev @nomiclabs/hardhat-etherscan // for etherscan verification
+> yarn add hardhat-gas-reporter --dev // also add the parameters in config file after installing
+> yarn add --dev solidity-coverage // for testing purpose - tells how many lines of .sol code is covered in test
 
 > yarn hardhat compile
 > yarn hardhat run scripts/deploy.js
 > yarn hardhat run scripts/deploy.js --network <network name> (first add the networks in hardhat.config.js)
+
+> yarn hardhat node // runs a node on the local network(local host) similar to ganache in our terminal
+> yarn hardhat run scripts/deploy.js --network localhost
+
+> yarn hardhat console --network <network name> // work in hardhat console
+> yarn hardhat clean // deletes artifacts and cache
