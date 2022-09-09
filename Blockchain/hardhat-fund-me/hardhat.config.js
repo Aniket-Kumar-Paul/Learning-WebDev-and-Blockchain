@@ -1,14 +1,18 @@
 require("@nomicfoundation/hardhat-toolbox")
+require("hardhat-gas-reporter")
+require("@nomiclabs/hardhat-etherscan")
+require("dotenv").config()
+require("solidity-coverage")
 require("hardhat-deploy")
 
 /** @type import('hardhat/config').HardhatUserConfig */
 
-const GOERLI_RPC_URL = process.env.GOERLI_RPC_URL || ""
+const GOERLI_RPC_URL = process.env.GOERLI_RPC_URL
 
-const PRIVATE_KEY = process.env.PRIVATE_KEY || ""
+const PRIVATE_KEY = process.env.PRIVATE_KEY
 
-const ETHERSCAN_API_KEY = process.env.ETHERSCAN_API_KEY || ""
-const COINMARKETCAP_API_KEY = process.env.COINMARKETCAP_API_KEY || ""
+const ETHERSCAN_API_KEY = process.env.ETHERSCAN_API_KEY
+const COINMARKETCAP_API_KEY = process.env.COINMARKETCAP_API_KEY
 
 module.exports = {
     solidity: "0.8.9",
@@ -36,13 +40,10 @@ module.exports = {
         coinmarketcap: COINMARKETCAP_API_KEY
     },
     namedAccounts: {
+        // name
         deployer: {
-            // name
-            default: 0 // 0th account is deployer
-            // 5: 1, // chainId: index (on goerli, it is 1st account)
-        },
-        user: {
-            default: 1
+            default: 0 // by default, 0th account is the deployer
+            // 5: 1, // chainId: index (on goerli, 1st account is deployer)
         }
     }
 }

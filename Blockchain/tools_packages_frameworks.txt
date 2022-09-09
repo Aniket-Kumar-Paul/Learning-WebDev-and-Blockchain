@@ -1,0 +1,11 @@
+> alchemy - web3 development tools to build & scale dApps
+	|_ getting rpc urls
+> chainlink/contracts - several tools, data feeds(getting price etc.)
+> hardhat - ethereum development environment
+> solhint - solidity linting
+> mocking - creating a second version of that contract which behaves very similar to the original one, but in a way that can be easily controlled by the developer.
+	|_ can create using inheritance etc
+> mocha - JavaScript test framework running on Node.js and in the browser, making asynchronous testing simple and fun.
+> chaijs - for writing tests
+> aave -  decentralized non-custodial liquidity markets protocol where users can participate as suppliers or borrowers.
+	|_ working with multiple chains and addresses
