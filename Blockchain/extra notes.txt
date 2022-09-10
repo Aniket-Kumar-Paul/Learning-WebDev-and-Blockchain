@@ -1,3 +1,4 @@
 # solhint -> solidity linting
 > yarn add --dev solhint
 > yarn solhint <file>
+> yarn hardhat node -> to see contracts deployed locally in the node (using mocks)

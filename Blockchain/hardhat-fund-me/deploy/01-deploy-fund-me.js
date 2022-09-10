@@ -1,6 +1,5 @@
 const { network } = require("hardhat")
-
-const { networkConfig } = require("../helper-hardhat-config")
+const { networkConfig, developmentChains } = require("../helper-hardhat-config")
 
 module.exports = async ({ getNamedAccounts, deployments }) => {
     // extract the above arguments from hre (hardhat runtime environment)
@@ -9,7 +8,14 @@ module.exports = async ({ getNamedAccounts, deployments }) => {
     const chainId = network.config.chainId
 
     // getting price feed address according to the chain
-    const ethUsdPriceFeed = networkConfig[chainId]["ethUsdPriceFeed"]
+    let ethUsdPriceFeedAddress
+    if (developmentChains.includes(network.name)) {
+        // local chain
+        const ethUsdAggregator = await deployments.get("MockV3Aggregator") // get recent deployment
+        ethUsdPriceFeedAddress = ethUsdAggregator.address
+    } else {
+        ethUsdPriceFeedAddress = networkConfig[chainId]["ethUsdPriceFeed"]
+    }
 
     // when we want to deploy in localhost or hardhat network,
     // we will use a mock (as hardhat gets reset everytime, but we want the blocks/contracts in the chain locally)
@@ -17,7 +23,10 @@ module.exports = async ({ getNamedAccounts, deployments }) => {
     // (<name of contract to deploy>, {<list of overrides>})
     const fundMe = await deploy("FundMe", {
         from: deployer,
-        args: [], // list of arguments to pass in the constructor (pricefeed address)
+        args: [ethUsdPriceFeedAddress], // list of arguments to pass in the constructor (pricefeed address)
         log: true
     })
+    log("_____________________________________________________")
 }
+
+module.exports.tags = ["all", "fundme"]

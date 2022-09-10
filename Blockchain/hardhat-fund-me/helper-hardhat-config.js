@@ -9,6 +9,15 @@ const networkConfig = {
     }
 }
 
+const developmentChains = ["hardhat", "localhost"]
+
+// arguments to pass in mock's constructor
+const DECIMALS = 8
+const INITIAL_ANSWER = 200000000000 // 2000.00..(8 DECIMALS)
+
 module.exports = {
-    networkConfig
+    networkConfig,
+    developmentChains,
+    DECIMALS,
+    INITIAL_ANSWER
 }
