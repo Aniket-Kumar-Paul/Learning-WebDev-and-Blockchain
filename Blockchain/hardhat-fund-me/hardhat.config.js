@@ -23,7 +23,8 @@ module.exports = {
         goerli: {
             url: GOERLI_RPC_URL,
             accounts: [PRIVATE_KEY], // can have a list of accounts
-            chainId: 5
+            chainId: 5,
+            blockConfirmations: 6 // wait for 6 blocks before verification
         },
         localhost: {
             url: "http://127.0.0.1:8545/",
