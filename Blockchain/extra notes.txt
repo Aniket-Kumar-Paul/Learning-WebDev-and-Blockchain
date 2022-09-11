@@ -2,3 +2,19 @@
 > yarn add --dev solhint
 > yarn solhint <file>
 > yarn hardhat node -> to see contracts deployed locally in the node (using mocks)
+
+# Solidity Style Guide
+Order of Layout :-
+Layout contract elements in the following order:
+> Pragma statements
+> Import statements
+> Interfaces
+> Libraries
+> Contracts
+
+Inside each contract, library or interface, use the following order:
+> Type declarations
+> State variables
+> Events
+> Modifiers
+> Functions

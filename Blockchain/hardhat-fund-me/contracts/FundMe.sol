@@ -1,16 +1,32 @@
 // SPDX-License-Identifier: MIT
+// Pragma
 pragma solidity ^0.8.9;
 
+// Imports
 import "./PriceConverter.sol";
 
 // We can save gas by using custom errors instead of using require() which stores strings for error messages
-error NotOwner();
+// Error
+error FundMe__NotOwner();
+
+// Interfaces, Libraries, Contracts
+
+// Below comment is useful for generating automatic documentation using:
+// solc --userdoc --devdoc FundMe.sol
+/**
+ * @title FundMe - A contract for crowd funding
+ * @author Aniket
+ * @notice This contract is to demo a sample funding contract
+ * @dev [message for developers] This implements price feeds as our library
+ */
 
 contract FundMe {
+    // Type Declarations
     using PriceConverter for uint256;
 
     uint256 public constant MINIMUM_USD = 50 * 1e18;
 
+    // State Variables
     address[] public funders;
     mapping(address => uint256) public addressToAmountFunded;
 
@@ -18,11 +34,41 @@ contract FundMe {
 
     AggregatorV3Interface public priceFeed;
 
+    // Modifier
+    modifier onlyOwner() {
+        // require(msg.sender == i_owner, "Only Owner can withdraw funds!");
+        if (msg.sender != i_owner) {
+            revert FundMe__NotOwner();
+        }
+        _;
+    }
+
+    // Functions Order :-
+    // constructor
+    // receive
+    // fallback
+    // external
+    // public
+    // internal
+    // private
+    // view / pure
+
     constructor(address priceFeedAddress) {
         i_owner = msg.sender; // whoever deployed the contract
         priceFeed = AggregatorV3Interface(priceFeedAddress);
     }
 
+    receive() external payable {
+        fund();
+    }
+
+    fallback() external payable {
+        fund();
+    }
+
+    /**
+     * @notice This function funds this contract
+     */
     function fund() public payable {
         require(
             msg.value.getConversionRate(priceFeed) > MINIMUM_USD,
@@ -55,35 +101,4 @@ contract FundMe {
 
         // revert() -> we can revert transactions anywhere in code
     }
-
-    modifier onlyOwner() {
-        // require(msg.sender == i_owner, "Only Owner can withdraw funds!");
-        if (msg.sender != i_owner) {
-            revert NotOwner();
-        }
-        _;
-    }
-
-    // What happens if someone sends this contract ETH but without calling fund function ?
-    // we won't be able to track the funders as that happens inside the fund function
-
-    // to solve this, we can use receive()
-    // - at most one receive function in a contract
-    // - can't have an argument or return
-    // - must have external visibility and payable state mutability
-    // - can be virtual, override and can have modifiers
-    // - receive function is executed on calling contract with empty calldata, i.e on plain ether transfers
-    // - Eg. via .send or .transfer, payable fallback() function is called if no such function exists
-    // - it must have either receive or fallback function to receive plain ether
-    receive() external payable {
-        fund();
-    }
-
-    // fallback()
-    fallback() external payable {
-        fund();
-    }
-
-    // Overall, if we send plain ether with calldata, fallback() is called, without data receive() is called
-    // if plain ether with no calldata is called, but receive() doesn't exist, fallback is called
 }
