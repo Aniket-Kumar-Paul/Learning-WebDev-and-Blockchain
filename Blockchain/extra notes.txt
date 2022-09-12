@@ -1,20 +1,8 @@
-# solhint -> solidity linting
-> yarn add --dev solhint
-> yarn solhint <file>
-> yarn hardhat node -> to see contracts deployed locally in the node (using mocks)
+# Testing
+> Unit tests are done locally on small chunks of code
+    - using local hardhat
+    - using forked hardhat
+> Staging tests can be done on a testnet (Last Stop)
 
-# Solidity Style Guide
-Order of Layout :-
-Layout contract elements in the following order:
-> Pragma statements
-> Import statements
-> Interfaces
-> Libraries
-> Contracts
-
-Inside each contract, library or interface, use the following order:
-> Type declarations
-> State variables
-> Events
-> Modifiers
-> Functions
+# To use console.log in solidity
+> import "hardhat/console.sol"
