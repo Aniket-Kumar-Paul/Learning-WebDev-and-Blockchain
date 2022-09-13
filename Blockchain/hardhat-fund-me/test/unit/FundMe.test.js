@@ -25,7 +25,7 @@ describe("FundMe", async function() {
 
     describe("constructor", async function() {
         it("sets the aggregator addresses correctly", async function() {
-            const response = await fundMe.s_priceFeed()
+            const response = await fundMe.getPriceFeed()
             assert.equal(response, mockV3Aggregator.address)
         })
     })
@@ -41,13 +41,13 @@ describe("FundMe", async function() {
         // yarn hardhat test --grep "amount funded"
         it("Updated the amount funded data structure", async function() {
             await fundMe.fund({ value: sendValue }) // send ether to the contract of given value
-            const response = await fundMe.s_addressToAmountFunded(deployer) // get the amount funded using the deployer address
+            const response = await fundMe.getAddressToAmountFunded(deployer) // get the amount funded using the deployer address
             assert.equal(response.toString(), sendValue.toString())
         })
 
-        it("Adds funder to array of s_funders", async function() {
+        it("Adds funder to array of getFunder", async function() {
             await fundMe.fund({ value: sendValue })
-            const funder = await fundMe.s_funders(0)
+            const funder = await fundMe.getFunder(0)
             assert.equal(funder, deployer)
         })
     })
@@ -126,7 +126,7 @@ describe("FundMe", async function() {
             ) // we are using .add instead of + since its a big number
         })
 
-        it("Allows us to withdraw with multiple s_funders", async function() {
+        it("Allows us to withdraw with multiple getFunder", async function() {
             // Arrange
             const accounts = await ethers.getSigners()
             // starting from 1 since 0 is the deployer
@@ -164,13 +164,13 @@ describe("FundMe", async function() {
                 currentDeployerBalance.add(gasCost).toString()
             )
 
-            // Make sure that s_funders are reset properly
+            // Make sure that getFunder are reset properly
             // test if the transaction was reverted
-            await expect(fundMe.s_funders(0)).to.be.reverted // if all s_funders have been reset, then fundMe.s_funders(0) should give error, which will be reverted
+            await expect(fundMe.getFunder(0)).to.be.reverted // if all getFunder have been reset, then fundMe.getFunder(0) should give error, which will be reverted
 
             for (let i = 1; i < 6; i++) {
                 assert.equal(
-                    await fundMe.s_addressToAmountFunded(accounts[i].address),
+                    await fundMe.getAddressToAmountFunded(accounts[i].address),
                     0
                 )
             }
@@ -225,13 +225,13 @@ describe("FundMe", async function() {
                 currentDeployerBalance.add(gasCost).toString()
             )
 
-            // Make sure that s_funders are reset properly
+            // Make sure that getFunder are reset properly
             // test if the transaction was reverted
-            await expect(fundMe.s_funders(0)).to.be.reverted // if all s_funders have been reset, then fundMe.s_funders(0) should give error, which will be reverted
+            await expect(fundMe.getFunder(0)).to.be.reverted // if all getFunder have been reset, then fundMe.getFunder(0) should give error, which will be reverted
 
             for (let i = 1; i < 6; i++) {
                 assert.equal(
-                    await fundMe.s_addressToAmountFunded(accounts[i].address),
+                    await fundMe.getAddressToAmountFunded(accounts[i].address),
                     0
                 )
             }

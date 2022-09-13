@@ -11,3 +11,7 @@
 > github.com/crytic/evm-opcodes --> shows the opcodes & corresponding gas
 
 # NOTE:- mappings can't be in memory
+
+# Internal and private variables are cheaper gas wise
+# Therefore, we can make required variables internal and private and use functions to get them
+# Another optimization can be to use reverts instead of requires as require needs to store the error message string
