@@ -1,8 +1,13 @@
-# Testing
-> Unit tests are done locally on small chunks of code
-    - using local hardhat
-    - using forked hardhat
-> Staging tests can be done on a testnet (Last Stop)
+# Storage in solidity
+> All variables that persist throughtout the contract are stored in Storage,
+> which is array(each slot of 32byte) where byte version of the object is stored in its hex representation
+> For dynamic variables and arrays, elements are stored using hasing function.
+    > For arrays, sequential storage spot is taken up for length of array
+    > For mappings, sequential storage spot is take up, but left blank
+> NOTE:- constant and immutable variables are not in storage, but they are considered part of the core of bytecode of the contract
+> await ethers.provider.getStorageAt(<address>)
 
-# To use console.log in solidity
-> import "hardhat/console.sol"
+> Reading/writing from/to storage adds to the gas cost
+> github.com/crytic/evm-opcodes --> shows the opcodes & corresponding gas
+
+# NOTE:- mappings can't be in memory
