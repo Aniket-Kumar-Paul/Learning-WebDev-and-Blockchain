@@ -1,4 +1,7 @@
 {
+  "name": "Hardhat-FundMe",
+  "author": "Aniket",
+  "version": "1.0.0",
   "devDependencies": {
     "@chainlink/contracts": "^0.4.1",
     "@ethersproject/abi": "^5.4.7",
@@ -22,6 +25,11 @@
     "typechain": "^8.1.0"
   },
   "scripts": {
-    "lint": "solhint 'contracts/*.sol'"
+    "lint": "yarn solhint 'contracts/*.sol'",
+    "lint:fix": "yarn solhint 'contracts/*.sol' --fix",
+    "test": "yarn hardhat test",
+    "test:staging": "yarn hardhat test --network goerli",
+    "format": "yarn prettier --write .",
+    "coverage": "yarn hardhat coverage"
   }
 }
