@@ -1,17 +1,1 @@
-# Storage in solidity
-> All variables that persist throughtout the contract are stored in Storage,
-> which is array(each slot of 32byte) where byte version of the object is stored in its hex representation
-> For dynamic variables and arrays, elements are stored using hasing function.
-    > For arrays, sequential storage spot is taken up for length of array
-    > For mappings, sequential storage spot is take up, but left blank
-> NOTE:- constant and immutable variables are not in storage, but they are considered part of the core of bytecode of the contract
-> await ethers.provider.getStorageAt(<address>)
-
-> Reading/writing from/to storage adds to the gas cost
-> github.com/crytic/evm-opcodes --> shows the opcodes & corresponding gas
-
-# NOTE:- mappings can't be in memory
-
-# Internal and private variables are cheaper gas wise
-# Therefore, we can make required variables internal and private and use functions to get them
-# Another optimization can be to use reverts instead of requires as require needs to store the error message string
+Smart Contract Lottery:-
