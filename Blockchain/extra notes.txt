@@ -1,1 +1,6 @@
-Smart Contract Lottery:-
+Smart Contract Lottery :-
+# Emitting user defined events on any useful change can be useful
+    > An event can have indexed (max 3) and non-indexed parameters
+    > indexed parameters are easier to search for
+    > The emitted event is stored in the EVM logs
+    
