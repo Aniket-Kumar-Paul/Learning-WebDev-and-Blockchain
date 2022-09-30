@@ -15,6 +15,14 @@ import "@chainlink/contracts/src/v0.8/AutomationCompatible.sol";
 error Raffle__NotEnoughETHEntered();
 error Raffle__TransferFailed();
 error Raffle__NotOpen();
+error Raffle__UpkeepNotNeeded(uint256 currentBalance, uint256 numPlayers, uint256 raffleState);
+
+/**
+ * @title A sample Raffle Contract
+ * @author Aniket Kumar Paul
+ * @notice This contract is for creating an untamperable decentralized smart contract
+ * @dev This implements Chainlink VRF V2 and Chainlink automation
+ */
 
 contract Raffle is VRFConsumerBaseV2, AutomationCompatibleInterface {
     // Type declaraions
@@ -44,6 +52,7 @@ contract Raffle is VRFConsumerBaseV2, AutomationCompatibleInterface {
     event RequestedRaffleWinner(uint256 indexed requestId);
     event WinnerPicked(address indexed winner);
 
+    // Functions
     constructor(
         address vrfCoordinatorV2,
         uint256 entranceFee,
@@ -87,9 +96,9 @@ contract Raffle is VRFConsumerBaseV2, AutomationCompatibleInterface {
      * 4. our subscription is funded with LINK
      */
     function checkUpkeep(
-        bytes calldata /* checkData */
+        bytes memory /* checkData */
     )
-        external
+        public
         view
         override
         returns (
@@ -106,7 +115,20 @@ contract Raffle is VRFConsumerBaseV2, AutomationCompatibleInterface {
 
     // requestRandomWinner() function is going to be called by chainlink keeper
     // get a random number
-    function requestRandomWinner() external {
+    // function requestRandomWinner() external
+    // rename function to performUpKeep as only this function has to run if upkeepNeed is true
+    function performUpkeep(
+        bytes calldata /* performData */
+    ) external override {
+        (bool upkeepNeeded, ) = checkUpkeep("");
+        if (!upkeepNeeded) {
+            revert Raffle__UpkeepNotNeeded(
+                address(this).balance,
+                s_players.length,
+                uint256(s_raffleState)
+            );
+        }
+
         // request random no.
         // do something with it
         // 2 transaction process
@@ -135,6 +157,7 @@ contract Raffle is VRFConsumerBaseV2, AutomationCompatibleInterface {
         s_recentWinner = recentWinner;
         s_raffleState = RaffleState.OPEN;
         s_players = new address payable[](0); // reset players array
+        s_lastTimeStamp = block.timestamp;
 
         // send all the balance of this contract to the winner with no data ("")
         (bool success, ) = recentWinner.call{value: address(this).balance}("");
@@ -157,5 +180,25 @@ contract Raffle is VRFConsumerBaseV2, AutomationCompatibleInterface {
 
     function getRecentWinner() public view returns (address) {
         return s_recentWinner;
+    }
+
+    function getRaffleState() public view returns (RaffleState) {
+        return s_raffleState;
+    }
+
+    function getNumWords() public pure returns (uint256) {
+        return NUM_WORDS;
+    }
+
+    function getNumberOfPlayers() public view returns (uint256) {
+        return s_players.length;
+    }
+
+    function getLatestTimeStamp() public view returns (uint256) {
+        return s_lastTimeStamp;
+    }
+
+    function getRequestConfirmations() public pure returns (uint256) {
+        return REQUEST_CONFIRMATIONS;
     }
 }
