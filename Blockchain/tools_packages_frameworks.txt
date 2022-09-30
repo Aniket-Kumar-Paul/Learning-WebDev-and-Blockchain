@@ -9,3 +9,4 @@
 > chaijs - for writing tests
 > aave -  decentralized non-custodial liquidity markets protocol where users can participate as suppliers or borrowers.
 	|_ working with multiple chains and addresses
+> hardhat-shorthand - lesser typings for commands to compile etc..

@@ -4,3 +4,7 @@ Smart Contract Lottery :-
     > indexed parameters are easier to search for
     > The emitted event is stored in the EVM logs
     
+# Getting a random number 
+    https://docs.chain.link/docs/vrf/v2/subscription/examples/get-a-random-number/
+        
+# Hardhat Shorthand (for lesser typings to compile etc..)
