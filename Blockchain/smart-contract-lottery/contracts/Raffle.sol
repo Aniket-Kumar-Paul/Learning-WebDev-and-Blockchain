@@ -54,7 +54,7 @@ contract Raffle is VRFConsumerBaseV2, AutomationCompatibleInterface {
 
     // Functions
     constructor(
-        address vrfCoordinatorV2,
+        address vrfCoordinatorV2, // contract address (use mocks for development chain and actual contract address for real chain)
         uint256 entranceFee,
         bytes32 gasLane,
         uint64 subscriptionId,
