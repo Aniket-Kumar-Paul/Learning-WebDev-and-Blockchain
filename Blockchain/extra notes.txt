@@ -8,3 +8,5 @@ Smart Contract Lottery :-
     https://docs.chain.link/docs/vrf/v2/subscription/examples/get-a-random-number/
         
 # Hardhat Shorthand (for lesser typings to compile etc..)
+
+# Chainlink Keepers is now called Chainlink Automation - will be used to automate the smart Contract
