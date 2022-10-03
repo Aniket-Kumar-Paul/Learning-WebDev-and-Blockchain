@@ -143,6 +143,9 @@ contract Raffle is VRFConsumerBaseV2, AutomationCompatibleInterface {
             NUM_WORDS // number of random words required
         );
 
+        // the requestRandomWords function itself emits and event which also includes requestId
+        // so below emit is redundant actually
+        // and in test, we txReceipt.events[1] because .events[0] is the one emitted by i_vrfCoordinator.requestRandomWords
         emit RequestedRaffleWinner(requestId);
     }
 
@@ -200,5 +203,9 @@ contract Raffle is VRFConsumerBaseV2, AutomationCompatibleInterface {
 
     function getRequestConfirmations() public pure returns (uint256) {
         return REQUEST_CONFIRMATIONS;
+    }
+
+    function getInterval() public view returns (uint256) {
+        return i_interval;
     }
 }
