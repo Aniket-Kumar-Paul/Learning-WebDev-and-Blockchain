@@ -38,6 +38,11 @@ module.exports = {
         },
     },
     mocha: {
-        timeout: 300000, // 300 sec max
+        timeout: 500000, // 500 sec max
+    },
+    etherscan: {
+        apiKey: {
+            goerli: ETHERSCAN_API_KEY,
+        },
     },
 }
