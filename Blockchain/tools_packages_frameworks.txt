@@ -10,3 +10,4 @@
 > aave -  decentralized non-custodial liquidity markets protocol where users can participate as suppliers or borrowers.
 	|_ working with multiple chains and addresses
 > hardhat-shorthand - lesser typings for commands to compile etc..
+> react-moralis - Moralis is a cross-chain solution meaning that the dApp can easily be ported to many other EVM compatible chains. we can use it in place of ethersjs.
