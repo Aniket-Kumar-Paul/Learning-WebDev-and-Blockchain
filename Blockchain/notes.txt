@@ -1,0 +1,46 @@
+-> Using rinkeby testnet (faucet.rinkeby.io) for testing.
+ 
+# Gas:
+-> Gas is a unit of computational measure. The more computation a transaction uses the more "gas" you have to pay for.
+-> Every transaction that happens on-chain pays a "gas fee" to node operators.
+
+> Gas Price: How much it costs per unit of gas (based off the "demand" of the blockchain)
+> Gas Limit: Max amount of gas allowed in a transaction
+
+> Transaction Fee: Gas Used x Gas Price
+i.e 21000 gas @ 1 GWEI per gas = 21000 GWEI
+
+# Genesis Block: The first block in blockchain
+
+# Block: A list of transactions mined together
+
+# Nonce: "number used once"-> to find the solution to the blockchain problem.
+			   -> it's also used to define the transaction number for an account/address.
+
+
+
+# Consensus :- 
+-> Mechanism used to agree on the state of a blockchain
+-> In regards to blockchain, reaching consensus means that at least 51% of the nodes on the network agree on the next global state of the network.
+-> It's the *Sybil resistance* mechanism combined with a *chain selection* rule that makes up a true consensus mechanism.
+-> Mechanisms :
+	1) Proof of Work
+	2) Proof of Stake
+	3) Proof of Authority
+-> Nakamoto Consensus = Proof of work + Longest Chain Rule
+-> Attacks - 1) Sybil Attack
+	     2) 51% Attack
+
+
+# Sharding :-
+-> solution to scalability problem
+	[scalability problem -> more people use blockchain => more gas fees they have to pay]
+-> blockchains of a blockchain
+-> increases the no. of transactions in layer 1
+	[layer 1: Base layer blockchain implementation
+		  Eg: Bitcoin, Ethereum etc.]
+	[layer 2: appliacation added on top of layer 1
+		  Eg: chainlink, arbitrum, optimism etc.]
+       #[Arbitrum and Optimism also look to solve scalability issues. They are called Rollups as they rollup their transaction to layer 1]
+
+
