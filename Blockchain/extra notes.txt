@@ -10,3 +10,8 @@ Smart Contract Lottery :-
 # Hardhat Shorthand (for lesser typings to compile etc..)
 
 # Chainlink Keepers is now called Chainlink Automation - will be used to automate the smart Contract
+
+# Full Stack ->
+> to see and update changes as per our requirements,
+    > we run "hh node" to run the smart contract locally in the background
+    > and also create an update-front-end deploy script to get updates in the front end automatically
