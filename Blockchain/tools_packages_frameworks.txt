@@ -11,3 +11,4 @@
 	|_ working with multiple chains and addresses
 > hardhat-shorthand - lesser typings for commands to compile etc..
 > react-moralis - Moralis is a cross-chain solution meaning that the dApp can easily be ported to many other EVM compatible chains. we can use it in place of ethersjs.
+> web3uitoolkit - Beautiful and lightweight UI components for web3 developers, used for wallet connect button etc.

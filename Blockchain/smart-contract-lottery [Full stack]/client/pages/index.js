@@ -1,5 +1,5 @@
 import Head from "next/head";
-import ManualHeader from "../components/ManualHeader";
+import Header from "../components/Header";
 import styles from "../styles/Home.module.css";
 
 export default function Home() {
@@ -11,7 +11,7 @@ export default function Home() {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
 
-            <ManualHeader />
+            <Header />
         </div>
     );
 }
