@@ -20,7 +20,7 @@ const LotteryEntrance = () => {
 
     // runContractFunction can both send transactions and read state
     // const { data, error, runContractFunction, isFetching, isLoading } = useWeb3Contract({..})
-    const { runContractFunction: enterRaffle } =
+    const { runContractFunction: enterRaffle, isLoading, isFetching } =
         useWeb3Contract({
             abi: abi,
             contractAddress: raffleAddress,
@@ -98,7 +98,9 @@ const LotteryEntrance = () => {
                                     onSuccess: handleSuccess, // we get these functions onsuccess etc. due to the runContractFunction 
                                     onError: (error) => console.log(error)
                                 })
-                            }}>
+                            }}
+                            disabled={isLoading || isFetching}
+                        >
                             Enter Raffle
                         </button>
                         <div>

@@ -15,5 +15,18 @@ Smart Contract Lottery :-
 > to see and update changes as per our requirements,
     > we run "hh node" to run the smart contract locally in the background
     > and also create an update-front-end deploy script to get updates in the front end automatically
-    > we add mockOffChain.js in the scripts of the smart contract 
-        > yarn hardhat run scripts/mockOffChain.js --network localhost ---> to run (selects the winners)
+> we add mockOffChain.js in the scripts of the smart contract 
+    > yarn hardhat run scripts/mockOffChain.js --network localhost ---> to run (selects the winners)
+
+> Deploying using IPFS
+    > ipfs only hosts code, can't do any server stuff
+    > first convert frontend to static page using "yarn build" and do "yarn next export"
+    > above will fail if you have anything related to server like serversideprops etc.
+    > the folder out will have all the static codes that can be used in ipfs
+    > upload the out folder using ipfs desktop application
+    > after upload set pinning for local node as true
+    > copy its cid and in browser, type ipfs://<cid>
+
+# Use this inplace of the steps above for deploying
+> Easier way to add code to ipfs using fleek.co
+> Go to fleek.co and deploy from github
