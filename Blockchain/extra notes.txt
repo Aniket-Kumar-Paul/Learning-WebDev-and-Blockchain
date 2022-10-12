@@ -15,3 +15,5 @@ Smart Contract Lottery :-
 > to see and update changes as per our requirements,
     > we run "hh node" to run the smart contract locally in the background
     > and also create an update-front-end deploy script to get updates in the front end automatically
+    > we add mockOffChain.js in the scripts of the smart contract 
+        > yarn hardhat run scripts/mockOffChain.js --network localhost ---> to run (selects the winners)

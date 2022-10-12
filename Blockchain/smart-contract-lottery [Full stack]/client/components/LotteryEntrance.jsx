@@ -94,6 +94,7 @@ const LotteryEntrance = () => {
                         <button
                             onClick={async function () {
                                 await enterRaffle({
+                                    // onSuccess -> checks to see if a transaction was successfully sent to metamask
                                     onSuccess: handleSuccess, // we get these functions onsuccess etc. due to the runContractFunction 
                                     onError: (error) => console.log(error)
                                 })
