@@ -1,15 +1,3 @@
-> EIP (Ethereum Improvement Proposals)
-	- describe standards for the ethereum platform including core protocol specifications, 
-	client apis and contract standards
-> when an EIP gets enough insights, they also create ERC (Ethereum Request for Comments) - (BEP, PEP)
-
-# ERC20
-> tokens(can be anything smart contract etc) deployed on a chain using ERC20 token standard
-> https://eips.ethereum.org/EIPS/eip-20
-	- just use the methods given in this in your smart contract
-> an example of smartcontract following ERC20 - https://github.com/PatrickAlphaC/hardhat-erc20-fcc
-
-# Use openzeppellin to get boiler plate code for ERC20 smart contracts
-	(yarn add --dev @openzeppelin/contracts)
-	(https://docs.openzeppelin.com/contracts/4.x/erc20)
-	
+# Hardhat DeFi and Aave
+- The aave protocol treats everything as an ERC20 token
+- ETH isn't an ERC20 token, but WETH(Wrapped ETH) is
