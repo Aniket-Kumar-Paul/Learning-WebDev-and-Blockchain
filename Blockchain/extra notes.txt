@@ -2,6 +2,11 @@
 - The aave protocol treats everything as an ERC20 token
 - ETH isn't an ERC20 token, but WETH(Wrapped ETH) is
 - aave health factor < 1 => gets liquidated
+> NOTE:- When we deposit our collateral, we get back an aToken (interest bearing token),
+        which keeps track of how much collateral(Eg. WETH token) we have deposited in aave protocol.
+        When we want to withdraw the collateral back, we burn/remove the aTokens.
+
+
 # Mainnet Forking
 > Another way to run tests is to fork the mainnet, and run a local 
   Hardhat node pretending to be a mainnet node
@@ -9,6 +14,7 @@
   reference an address, we make api call to ethereum node(alchemy here), and
   will return just that specific contract
 > Hardhat mainnet forking also provides fake accounts
+ 
 
 # Overall steps in short 
 - eth to weth 
