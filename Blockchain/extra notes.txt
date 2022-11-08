@@ -15,3 +15,7 @@
 - mainnet fork 
 - getting lending pool contract 
 - approving and depositing in lending pool 
+- getting borrow user data
+- getting dai(token to borrow) price
+- borrowing dai 
+- repaying dai
