@@ -1,7 +1,7 @@
 # Hardhat DeFi and Aave
 - The aave protocol treats everything as an ERC20 token
 - ETH isn't an ERC20 token, but WETH(Wrapped ETH) is
-
+- aave health factor < 1 => gets liquidated
 # Mainnet Forking
 > Another way to run tests is to fork the mainnet, and run a local 
   Hardhat node pretending to be a mainnet node
