@@ -1,0 +1,21 @@
+BASIC NFT :-
+1. Use openzeppelin for the ERC721 contract
+2. Mint NFT using _safeMint() function
+3. Upload your image in IPFS and also the make a json file and upload in ipfs 
+JSON file :-
+{
+    "name": "PUG",
+    "description": "An adorable PUG pup!",
+    "image": "https://ipfs.io/ipfs/QmSsYRx3LpDAb1GZQm7zZ1AuHZjfbPkD6J7s9r41xu1mf8?filename=pug.png",
+    "attributes": [
+        {
+            "trait_type": "cuteness",
+            "value": 100
+        }
+    ]
+}
+
+NOTE:- for the image, use ipfs://QmSsYRx3LpDAb1GZQm7zZ1AuHZjfbPkD6J7s9r41xu1mf8 instead
+4. Create function tokenURI to get the tokenURI
+5. Create helper-hardhat-config.js, verify.js(in utils) & deploy script (hh deploy)
+6. Create the test script and test (hh test)
