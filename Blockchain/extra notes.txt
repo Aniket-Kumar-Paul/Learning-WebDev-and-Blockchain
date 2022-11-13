@@ -13,7 +13,6 @@
   reference an address, we make api call to ethereum node(alchemy here), and
   will return just that specific contract
 > Hardhat mainnet forking also provides fake accounts
- 
 
 # Overall steps in short 
 - eth to weth 

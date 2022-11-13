@@ -19,3 +19,7 @@ NOTE:- for the image, use ipfs://QmSsYRx3LpDAb1GZQm7zZ1AuHZjfbPkD6J7s9r41xu1mf8 
 4. Create function tokenURI to get the tokenURI
 5. Create helper-hardhat-config.js, verify.js(in utils) & deploy script (hh deploy)
 6. Create the test script and test (hh test)
+
+
+RANDOM IPFS NFT :-
+1. Getting random number using chainlink VRF 
