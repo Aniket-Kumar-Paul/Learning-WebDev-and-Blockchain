@@ -16,7 +16,7 @@ JSON file :-
 }
 
 NOTE:- for the image, use ipfs://QmSsYRx3LpDAb1GZQm7zZ1AuHZjfbPkD6J7s9r41xu1mf8 instead
-4. Create function tokenURI to get the tokenURI
+4. Create function tokenURI to get the tokenURI(the ipfs json file)
 5. Create helper-hardhat-config.js, verify.js(in utils) & deploy script (hh deploy)
 6. Create the test script and test (hh test)
 
@@ -24,4 +24,9 @@ NOTE:- for the image, use ipfs://QmSsYRx3LpDAb1GZQm7zZ1AuHZjfbPkD6J7s9r41xu1mf8 
 RANDOM IPFS NFT :-
 1. Getting random number using chainlink VRF 
 2. Mapping chainlink VRF requests & _safeMint NFT
-3. Creating Rare NFTs
+3. Creating Rare NFTs using a chance array
+4. Setting the NFT Image 
+    |_ we can create a mapping between dog breed and token URI  ..OR, 
+    |_ use _setTokenURI function from the extension of openzepellin's ERC721URIStorage.sol
+        [NOTE: _setTokenURI isn't the most gas efficient operation]
+5. 

@@ -3,11 +3,11 @@ pragma solidity ^0.8.17;
 
 import "@chainlink/contracts/src/v0.8/interfaces/VRFCoordinatorV2Interface.sol";
 import "@chainlink/contracts/src/v0.8/VRFConsumerBaseV2.sol";
-import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
+import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
 
-error RandomIpfsNft__RangeOutOfBounds;
+error RandomIpfsNft__RangeOutOfBounds();
 
-contract RandomIpfsNft is VRFConsumerBaseV2, ERC721 {
+contract RandomIpfsNft is VRFConsumerBaseV2, ERC721URIStorage {
     // When we mint an NFT, we will trigger a chainlink VRF call to get a random number
     // we will get the random NFT based on this number
     // the NFTs can be Pug, Shiba Inu, St. Bernard
@@ -37,17 +37,20 @@ contract RandomIpfsNft is VRFConsumerBaseV2, ERC721 {
     // NFT Variables
     uint256 public s_tokenCounter;
     uint256 internal constant MAX_CHANCE_VALUE = 100;
+    string[] internal s_dogTokenUris;
 
     constructor(
         address vrfCoordinatorV2,
         uint64 subscriptionId,
         bytes32 gasLane,
-        uint32 callbackGasLimit
+        uint32 callbackGasLimit,
+        string[3] memory dogTokenUris
     ) VRFConsumerBaseV2(vrfCoordinatorV2) ERC721("Random IPFS NFT", "RIN") {
         i_vrfCoordinator = VRFCoordinatorV2Interface(vrfCoordinatorV2);
         i_subscriptionId = subscriptionId;
         i_gasLane = gasLane;
         i_callbackGasLimit = callbackGasLimit;
+        s_dogTokenUris = dogTokenUris;
     }
 
     function requestNft() public returns (uint256 requestId) {
@@ -71,15 +74,18 @@ contract RandomIpfsNft is VRFConsumerBaseV2, ERC721 {
         // 10 - 39 -> Shiba Inu
         // 40 - 99 -> St. Bernard
         Breed dogBreed = getBreedFromModdedRng(moddedRng);
-        
+
         _safeMint(nftOwner, newTokenId);
+
+        // _setTokenURI(uint256 tokenId, string memory _tokenURI)
+        _setTokenURI(newTokenId, s_dogTokenUris[uint256(dogBreed)]);
     }
 
     function getBreedFromModdedRng(uint256 moddedRng) public pure returns (Breed) {
         uint256 cummulativeSum = 0;
         uint256[3] memory chanceArray = getChanceArray();
         for (uint256 i = 0; i < chanceArray.length; i++) {
-            if(moddedRng >= cummulativeSum && moddedRng < cummulativeSum + chanceArray[i])
+            if (moddedRng >= cummulativeSum && moddedRng < cummulativeSum + chanceArray[i])
                 return Breed(i);
             cummulativeSum += chanceArray[i];
         }
