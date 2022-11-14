@@ -24,3 +24,4 @@ NOTE:- for the image, use ipfs://QmSsYRx3LpDAb1GZQm7zZ1AuHZjfbPkD6J7s9r41xu1mf8 
 RANDOM IPFS NFT :-
 1. Getting random number using chainlink VRF 
 2. Mapping chainlink VRF requests & _safeMint NFT
+3. Creating Rare NFTs

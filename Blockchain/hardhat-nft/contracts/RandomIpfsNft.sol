@@ -5,6 +5,8 @@ import "@chainlink/contracts/src/v0.8/interfaces/VRFCoordinatorV2Interface.sol";
 import "@chainlink/contracts/src/v0.8/VRFConsumerBaseV2.sol";
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 
+error RandomIpfsNft__RangeOutOfBounds;
+
 contract RandomIpfsNft is VRFConsumerBaseV2, ERC721 {
     // When we mint an NFT, we will trigger a chainlink VRF call to get a random number
     // we will get the random NFT based on this number
@@ -13,6 +15,13 @@ contract RandomIpfsNft is VRFConsumerBaseV2, ERC721 {
 
     // users have to pay to mint an NFT
     // the owner of the contract can withdraw ETH
+
+    // Type Declaration
+    enum Breed {
+        PUG,
+        SHIBA_INU,
+        ST_BERNARD
+    }
 
     // Chainlink VRF Variables
     VRFCoordinatorV2Interface private immutable i_vrfCoordinator;
@@ -27,6 +36,7 @@ contract RandomIpfsNft is VRFConsumerBaseV2, ERC721 {
 
     // NFT Variables
     uint256 public s_tokenCounter;
+    uint256 internal constant MAX_CHANCE_VALUE = 100;
 
     constructor(
         address vrfCoordinatorV2,
@@ -54,7 +64,33 @@ contract RandomIpfsNft is VRFConsumerBaseV2, ERC721 {
     function fulfillRandomWords(uint256 requestId, uint256[] memory randomWords) internal override {
         address nftOwner = s_requestIdToSender[requestId];
         uint256 newTokenId = s_tokenCounter;
+
+        // What does this token look like?
+        uint256 moddedRng = randomWords[0] % MAX_CHANCE_VALUE; // 0 - 99
+        // 0 - 9 -> PUG
+        // 10 - 39 -> Shiba Inu
+        // 40 - 99 -> St. Bernard
+        Breed dogBreed = getBreedFromModdedRng(moddedRng);
+        
         _safeMint(nftOwner, newTokenId);
+    }
+
+    function getBreedFromModdedRng(uint256 moddedRng) public pure returns (Breed) {
+        uint256 cummulativeSum = 0;
+        uint256[3] memory chanceArray = getChanceArray();
+        for (uint256 i = 0; i < chanceArray.length; i++) {
+            if(moddedRng >= cummulativeSum && moddedRng < cummulativeSum + chanceArray[i])
+                return Breed(i);
+            cummulativeSum += chanceArray[i];
+        }
+        revert RandomIpfsNft__RangeOutOfBounds();
+    }
+
+    function getChanceArray() public pure returns (uint256[3] memory) {
+        // index 0 has 10% chance of happening,
+        // index 1 has 20% chance of happening, (30 - 10)
+        // index 2 has 60% chance of happening, (100 - (30+10))
+        return [10, 30, MAX_CHANCE_VALUE];
     }
 
     function tokenURI(uint256) public pure override returns (string memory) {}
