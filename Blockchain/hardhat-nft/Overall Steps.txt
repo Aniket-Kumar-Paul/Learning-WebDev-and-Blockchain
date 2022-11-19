@@ -33,3 +33,6 @@ RANDOM IPFS NFT :-
 6. Withdraw by owner (using modifier OR onlyOwner modifier of openzeppelin)
 7. Writing get functions
 8. Emitting events
+9. Creating mock script 
+10. Creating deploy script
+11. Uploading token images with Pinata
