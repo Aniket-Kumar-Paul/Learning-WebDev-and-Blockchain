@@ -35,4 +35,7 @@ RANDOM IPFS NFT :-
 8. Emitting events
 9. Creating mock script 
 10. Creating deploy script
-11. Uploading token images with Pinata
+11. Uploading token images (using Pinata here) and getting the tokenURIs
+        |_ using IPFS 
+        |_ Pinata
+        |_ nft.storage (uses filecoin)
