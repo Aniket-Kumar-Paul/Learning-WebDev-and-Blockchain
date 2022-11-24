@@ -39,3 +39,7 @@ RANDOM IPFS NFT :-
         |_ using IPFS 
         |_ Pinata
         |_ nft.storage (uses filecoin)
+12. Set upload to pinata = true adn After deploying the script, copy the tokenURIs and hardcode in a list
+   and set upload to pinata = false in env 
+13. Fund the subscription in deploy script, and make test script
+

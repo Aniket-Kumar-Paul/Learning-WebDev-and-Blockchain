@@ -17,12 +17,19 @@ const metadataTemplate = {
     ],
 }
 
+let tokenUris = [
+    "ipfs://QmWe5hZPsi7Xq3Hskc7w3y8b7evhxxqZ7GttJAh3NywwzY",
+    "ipfs://QmPb9aoiex1wt3cdi5W5gPCJu8nXFurAyeWRMQzWcKic1V",
+    "ipfs://QmRCdMwDoR5dVXmU6XfkEDj9UvWdi4ndwuJZDVWwhT8UJ7",
+]
+
+const FUND_AMOUNT = "1000000000000000000000" // 10 LINK
+
 module.exports = async function ({ getNamedAccounts, deployments }) {
     const { deploy, log } = deployments
     const { deployer } = await getNamedAccounts()
     const chainId = network.config.chainId
 
-    let tokenUris
     // get the IPFS hashes of images
     if (process.env.UPLOAD_TO_PINATA == "true") {
         tokenUris = await handleTokenUris()
@@ -36,22 +43,36 @@ module.exports = async function ({ getNamedAccounts, deployments }) {
         const tx = await vrfCoordinatorV2Mock.createSubscription()
         const txReceipt = await tx.wait(1)
         subscriptionId = txReceipt.events[0].args.subId
+        await vrfCoordinatorV2Mock.fundSubscription(subscriptionId, FUND_AMOUNT)
     } else {
         vrfCoordinatorV2Address = networkConfig[chainId].vrfCoordinatorV2
         subscriptionId = networkConfig[chainId].subscriptionId
     }
     log("--------------------------------------------------------------------")
 
-    await storeImages(imagesLocation)
-    // const args = [
-    //     // constructor arguments for random-ipfs
-    //     vrfCoordinatorV2Address,
-    //     subscriptionId,
-    //     networkConfig[chainId].gasLane,
-    //     networkConfig[chainId].callbackGasLimit,
-    //     // tokenURIs
-    //     networkConfig[chainId].mintFee,
-    // ]
+    const args = [
+        // constructor arguments for random-ipfs
+        vrfCoordinatorV2Address,
+        subscriptionId,
+        networkConfig[chainId].gasLane,
+        networkConfig[chainId].callbackGasLimit,
+        tokenUris,
+        networkConfig[chainId].mintFee,
+    ]
+
+    const randomIpfsNft = await deploy("RandomIpfsNft", {
+        from: deployer,
+        args: args,
+        log: true,
+        waitConfirmations: network.config.blockConfirmations || 1,
+    })
+    log("--------------------------------------------------------------------")
+
+    if (!developmentChains.includes(network.name) && process.env.ETHERSCAN_API_KEY) {
+        log("Verifying...")
+        await verify(randomIpfsNft.address, args)
+    }
+    log("--------------------------------------------------------------------")
 }
 
 async function handleTokenUris() {
