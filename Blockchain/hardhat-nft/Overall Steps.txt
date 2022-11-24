@@ -43,3 +43,8 @@ RANDOM IPFS NFT :-
    and set upload to pinata = false in env 
 13. Fund the subscription in deploy script, and make test script
 
+
+DYNAMIC SVG (ON-CHAIN NFT, instead of IPFS) :-
+1. Create 2 svgs, If price of ETH is above X -> happy.svg, else frown.svg
+2. Create the contract 
+3. Encode the svg to a Base64 image url

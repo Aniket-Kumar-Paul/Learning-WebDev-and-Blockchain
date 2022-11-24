@@ -44,3 +44,33 @@ i.e 21000 gas @ 1 GWEI per gas = 21000 GWEI
        #[Arbitrum and Optimism also look to solve scalability issues. They are called Rollups as they rollup their transaction to layer 1]
 
 
+
+# Transactions
+|_ Nonce
+|_ Gas Price
+|_ Gas Limit
+|_ To
+|_ Value
+|_ Data
+|_ v, r, s (components of tx signature)
+
+- Tx-Contract Deployment
+> To: empty
+> Data: contract init code & contract bytecode
+
+- Tx-Function Call
+> To: address that the tx is sent to
+> Data: what to send to the To address
+
+- we can directly set these values by using .call method
+	Eg: winner.call{value: address(this).balance}("") --> ("") is the call data
+	- {} -> pass specific field of tx, like value
+	- () -> pass data in order to call a specific function
+		|_ To call a function using only data field of call, we need to encode to binary level following:
+		|	|_ function name & parameters we want to add
+		|_ how to do this ?
+			|_ https://www.youtube.com/watch?v=gyMwXuJrbJQ
+			|_ Timestamp: 22:47:50
+	- since, here we just send ETH so we don't call any function in ("")
+
+
