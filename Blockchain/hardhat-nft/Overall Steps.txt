@@ -51,3 +51,6 @@ DYNAMIC SVG (ON-CHAIN NFT, instead of IPFS) :-
 4. Similarly, make function to encode the json uri as well (tokenURI function)
 5. Take a high value as input in mintNft function and also emit an event
 6. Use chainlink price feed & the high value, to choose the corresponding imageURI
+7. Add the chainlink price feed address in helper-hardhat & also mockv3aggregator for local
+8. Make the deploy script (hh deploy --tags dynamicsvg,mocks)
+9. Make the test script
