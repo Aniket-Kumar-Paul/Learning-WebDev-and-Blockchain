@@ -54,3 +54,13 @@ DYNAMIC SVG (ON-CHAIN NFT, instead of IPFS) :-
 7. Add the chainlink price feed address in helper-hardhat & also mockv3aggregator for local
 8. Make the deploy script (hh deploy --tags dynamicsvg,mocks)
 9. Make the test script
+
+
+FINAL :-
+1. Add a mint scipt in deploy folder, that will mint an nft for each of the contracts
+2. Check if it is working for local network
+[NOTE:- If network is not local, mint script shouldn't be called directly as we have to add consumers to the VRF first for the random IPFS]
+2. Deploy all the scripts except mint to goerli test network (hh deploy --network goerli --tags main)
+3. Grab the random ipfs contract address in etherscan and use it in to add a consumer in your vrf.chain.link subscription 
+4. Now we can run the mint script (hh deploy --tags mint --network goerli)
+5. Go to https://testnets.opensea.io/ and use the contract address in search bar
