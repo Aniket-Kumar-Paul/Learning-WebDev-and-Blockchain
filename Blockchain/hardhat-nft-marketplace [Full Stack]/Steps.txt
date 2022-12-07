@@ -1,3 +1,7 @@
 1. Make NftMarketplace contract
     1. Make listItem function with required modifiers
     2. Make buyItem function (and taking care of reentrancy attack)
+    3. Make cancelListing function 
+    4. Make updateListing function
+    5. Make withdrawProceeds function
+    6. Make getter functions
