@@ -74,3 +74,6 @@ i.e 21000 gas @ 1 GWEI per gas = 21000 GWEI
 	- since, here we just send ETH so we don't call any function in ("")
 
 
+# Reentrancy Attack
+- A reentrancy attack creates a recursive process that transfers funds between two smart contracts, the vulnerable contract and the malicious contract.
+- Make sure to update the states before calling any external contract or function
