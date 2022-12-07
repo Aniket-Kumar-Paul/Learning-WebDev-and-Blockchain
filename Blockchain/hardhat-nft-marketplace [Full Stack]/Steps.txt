@@ -5,3 +5,4 @@
     4. Make updateListing function
     5. Make withdrawProceeds function
     6. Make getter functions
+2. Make deploy script
