@@ -5,4 +5,6 @@
     4. Make updateListing function
     5. Make withdrawProceeds function
     6. Make getter functions
-2. Make deploy script
+2. Make deploy script 
+3. Make script for nfts in contracts/test/BasicNft.sol and it's deploy script
+4. Make test script (hh test, hh coverage)
