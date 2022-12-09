@@ -8,3 +8,7 @@
 2. Make deploy script 
 3. Make script for nfts in contracts/test/BasicNft.sol and it's deploy script
 4. Make test script (hh test, hh coverage)
+5. Write scripts to mint, buy nfts etc.
+    1. Make mint-and-list script 
+    2. Run: > hh node(runs through the deploy scripts)
+            > hh run scripts/mint-and-list.js --network localhost
