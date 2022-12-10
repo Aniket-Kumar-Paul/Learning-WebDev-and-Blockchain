@@ -4,3 +4,4 @@
         2. If not, you can buy the listing
 2. Sell Page:
     1. You can list your NFT on the marketplace
+    
