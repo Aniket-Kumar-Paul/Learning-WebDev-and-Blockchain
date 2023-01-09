@@ -1,0 +1,2 @@
+> governance_standard -> all voting logic that the governance token is going to use
+    > TimeLock is an additional contract that is actually the owner of the Box contract
