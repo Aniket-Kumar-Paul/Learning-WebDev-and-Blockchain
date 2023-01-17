@@ -12,3 +12,10 @@
      once it's in the time lock, and it waits that period, anybody can go and execute it.
 
 > Also, we need the deploy script for the contract(Box.sol) that we actually want to govern over
+
+> The scripts will be used to interact with the dao
+    |_ first we're going to propose something (propose.ts), like  change starting value to 77 in box contract 
+    |_ after proposing, we start voting on it (vote.ts)
+    |_ if the voting passes, we queue first and then we execute it
+
+> proposals.json will store all the proposals 
