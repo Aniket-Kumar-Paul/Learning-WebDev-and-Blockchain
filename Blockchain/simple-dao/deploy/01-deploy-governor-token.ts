@@ -1,11 +1,13 @@
 import { HardhatRuntimeEnvironment } from "hardhat/types";
 import { DeployFunction } from "hardhat-deploy/dist/types";
+// @ts-ignore
 import { ethers } from "hardhat";
 
 // : DeployFunction (type)
 const deployGovernanceToken: DeployFunction = async function (
   hre: HardhatRuntimeEnvironment
 ) {
+  // @ts-ignore
   const { getNamedAccounts, deployments, network } = hre;
   const { deploy, log } = deployments;
   const { deployer } = await getNamedAccounts();

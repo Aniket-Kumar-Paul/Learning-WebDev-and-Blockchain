@@ -3,3 +3,12 @@
 
 > The GovernorContract is where we're gonna send our votes and stuff, but its the TimeLock
  that everything needs to flow through in order for the governance to actually happen
+
+> setup governance contract 
+    - we wanna only allow the proposers in the timelock contract to be the governor
+    - the governor contract should be the only one that proposes things to the timelock
+
+    - In other words, the governance contract proposes something to the time lock.
+     once it's in the time lock, and it waits that period, anybody can go and execute it.
+
+> Also, we need the deploy script for the contract(Box.sol) that we actually want to govern over
