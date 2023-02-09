@@ -17,3 +17,4 @@
 > openzeppellin - almost like a standard library for solidity, eg. to get bolierplate for an ERC20 code
 > pinata - pins nfts with upload in ipfs
 > The Graph -> (decentralized) an indexing protocol for querying networks like Ethereum & IPFS
+> Thirdweb -> web3 development framework (create, release, deploy smart contracts with a single command)

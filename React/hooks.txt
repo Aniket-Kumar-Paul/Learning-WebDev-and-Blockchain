@@ -1,0 +1,10 @@
+1. useState() - when data changes re-render the UI
+2. useEffect() - run when mounted/state changes
+3. useContext() - share data w/o passing props in the component tree
+4. useRef() - mutable value, but doesn't re-render UI
+		- used to grab native HTML elements from JSX
+5. useReducer() - different way to manage state (Redux)
+			(instead of update state directly, you dispatch actions that go to 
+			a reducer function, which determines how to compute the next state)
+6. useMemo() - cache result of function call (use only for expensive calculations)
+7. useCallback() - wrap in functions to prevent unnecessary rerenders of the children
