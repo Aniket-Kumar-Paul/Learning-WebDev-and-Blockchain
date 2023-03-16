@@ -1,5 +1,3 @@
--> Using rinkeby testnet (faucet.rinkeby.io) for testing.
- 
 # Gas:
 -> Gas is a unit of computational measure. The more computation a transaction uses the more "gas" you have to pay for.
 -> Every transaction that happens on-chain pays a "gas fee" to node operators.
