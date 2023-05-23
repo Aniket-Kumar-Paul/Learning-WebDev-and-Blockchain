@@ -1,0 +1,13 @@
+> FastAPI provides automatic documentation using Swagger UI, ReDoc
+
+# Creating virtual environment
+> python -m venv <folder name/path>
+> <folder name>\Scripts\activate.bat [for CMD] || <folder name>\Scripts\Activate.ps1 [for powershell]
+> pip install fastapi # installs only inside the env.
+> pip install uvicorn # ASGI(Asynchronous Server Gateway Interface) Server
+
+From root directory, run this everytime you add/update any packages:
+> pip freeze > requirements.txt
+
+# To run the server: 
+> uvicorn main:app --reload

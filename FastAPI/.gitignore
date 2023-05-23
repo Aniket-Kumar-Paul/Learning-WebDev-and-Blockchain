@@ -1,0 +1,47 @@
+# Byte-compiled / optimized Python files
+__pycache__/
+*.py[cod]
+
+# Virtual environment
+venv/
+env/
+
+# Dependency directories
+.env
+.env.*
+/.venv
+/vendor
+/.pytest_cache/
+/mypy_cache/
+
+# Editor/IDE-specific files
+.idea/
+.vscode/
+*.sublime-*
+*.swp
+*.swo
+
+# Project generated files
+/.coverage
+/.mypy_cache/
+/.pytest_cache/
+/coverage.xml
+/.htmlcov/
+/.tox/
+/nose2-results/
+/nose2.cfg
+/.eggs/
+*.egg-info/
+dist/
+build/
+*.egg
+
+# Logs and temporary files
+/logs/
+/tmp/
+*.log
+*.pid
+
+# Other
+.DS_Store
+*.bak
