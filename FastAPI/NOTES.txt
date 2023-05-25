@@ -10,4 +10,6 @@ From root directory, run this everytime you add/update any packages:
 > pip freeze > requirements.txt
 
 # To run the server: 
-> uvicorn main:app --reload
+> uvicorn main:app --reload (main->file name, app->fast api instance in that file)
+
+# Things like type system, data conversion etc. is done by Pydantic (Data Validation)
