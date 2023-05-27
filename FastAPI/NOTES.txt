@@ -8,6 +8,7 @@
 
 From root directory, run this everytime you add/update any packages:
 > pip freeze > requirements.txt
+> pip install -r requirements.txt (to install)
 
 # To run the server: 
 > uvicorn main:app --reload (main->file name, app->fast api instance in that file)
@@ -21,3 +22,11 @@ From root directory, run this everytime you add/update any packages:
 > select breakpoint
 > ctrl+shift+p -> search debug restart -> select fastapi
 > execute in swagger ui docs and see changes/variables etc. in run & debug bar in vscode
+
+# To run main.py inside blog folder: uvicorn blog.main:app --reload
+
+# ORM (Object Relational Mapper)
+
+# Using TablePlus to view the database tables 
+
+# Database Creation: database.py(engine, session, base) -> models.py(needs base) -> create table command in main.py
