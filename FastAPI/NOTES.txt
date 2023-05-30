@@ -30,3 +30,14 @@ From root directory, run this everytime you add/update any packages:
 # Using TablePlus to view the database tables 
 
 # Database Creation: database.py(engine, session, base) -> models.py(needs base) -> create table command in main.py
+
+# Status codes : 
+    |- 200 & above: "Successful" responses
+        |- 200: 'OK'
+        |- 201: 'Created'
+        |- 204: 'No Content'
+    |- 300 & above: 'Redirection'
+    |- 400 & above: 'Client error' responses 
+        |- 404: 'Not Found'
+    |- 500 & above: 'Server errors'
+    
