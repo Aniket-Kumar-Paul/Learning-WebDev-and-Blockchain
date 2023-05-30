@@ -1,3 +1,4 @@
+from typing import List
 from fastapi import FastAPI, Depends, HTTPException, status, Response
 from . import schemas, models
 from .database import engine, SessionLocal
@@ -33,15 +34,16 @@ def create(request: schemas.Blog, db: Session = Depends(get_db)):
     return new_blog
 
 
-@app.get('/blog')
+@app.get('/blog', response_model=List[schemas.ShowBlog])
 def get_all(db: Session = Depends(get_db)):  # get all rows/data of Blog model
     blogs = db.query(models.Blog).all()
     return blogs
 
 
-# If no error, return this status code
-@app.get('/blog/{id}', status_code=status.HTTP_200_OK)
-def get_ids_blog(id, response: Response, db: Session = Depends(get_db)):
+# If no error, return 200 status code
+# response_model -> use ShowBlog pydantic schema
+@app.get('/blog/{id}', status_code=status.HTTP_200_OK, response_model=schemas.ShowBlog)
+def show_ids_blog(id, response: Response, db: Session = Depends(get_db)):
     blog = db.query(models.Blog).filter(models.Blog.id ==
                                         id).first()  # Get only the first result
     if not blog:  # if blog not found, return with 404 status code
@@ -63,20 +65,22 @@ def delete_blog(id, db: Session = Depends(get_db)):
         models.Blog.id == id
     )
     if not blog.first():
-        raise HTTPException(status_code = status.HTTP_404_NOT_FOUND, 
-                            detail = f"Blog with ID {id} is not available")
-    
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
+                            detail=f"Blog with ID {id} is not available")
+
     blog.delete(synchronize_session=False)
     db.commit()
     return "Deleted"
 
 # Update
+
+
 @app.put('/blog/{id}', status_code=status.HTTP_202_ACCEPTED)
 def update(id, request: schemas.Blog, db: Session = Depends(get_db)):
     blog = db.query(models.Blog).filter(models.Blog.id == id)
     if not blog.first():
-        raise HTTPException(status_code = status.HTTP_404_NOT_FOUND, 
-                            detail = f"Blog with ID {id} is not available")
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
+                            detail=f"Blog with ID {id} is not available")
     blog.update(request.dict())
     db.commit()
     return "Updated"

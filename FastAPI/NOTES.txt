@@ -40,4 +40,6 @@ From root directory, run this everytime you add/update any packages:
     |- 400 & above: 'Client error' responses 
         |- 404: 'Not Found'
     |- 500 & above: 'Server errors'
-    
+
+# SQLAlchemy Model -> model 
+  Pydantic Model   -> schema
