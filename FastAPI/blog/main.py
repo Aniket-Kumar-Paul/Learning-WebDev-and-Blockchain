@@ -19,7 +19,7 @@ def get_db():
 
 
 # or, simply status_code = 201
-@app.post('/blog', status_code = status.HTTP_201_CREATED)
+@app.post('/blog', status_code=status.HTTP_201_CREATED)
 # Default value of db is Depends(get_db) to convert Session to a pydantic type
 def create(request: schemas.Blog, db: Session = Depends(get_db)):
     new_blog = models.Blog(
@@ -39,15 +39,44 @@ def get_all(db: Session = Depends(get_db)):  # get all rows/data of Blog model
     return blogs
 
 
-@app.get('/blog/{id}', status_code = status.HTTP_200_OK) # If no error, return this status code
+# If no error, return this status code
+@app.get('/blog/{id}', status_code=status.HTTP_200_OK)
 def get_ids_blog(id, response: Response, db: Session = Depends(get_db)):
     blog = db.query(models.Blog).filter(models.Blog.id ==
                                         id).first()  # Get only the first result
-    if not blog: # if blog not found, return with 404 status code
+    if not blog:  # if blog not found, return with 404 status code
         # response.status_code = status.HTTP_404_NOT_FOUND
         # return {'Details: f"Blog with the ID {id} is not available"'}
         raise HTTPException(
-            status_code = status.HTTP_404_NOT_FOUND,
-            detail = f"Blog with the ID {id} is not available"
-            )
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail=f"Blog with the ID {id} is not available"
+        )
     return blog
+
+
+@app.delete('/blog/{id}', status_code=status.HTTP_204_NO_CONTENT)
+def delete_blog(id, db: Session = Depends(get_db)):
+    # schronize_session
+    # |- False (synchronize only after session expiration / commit)
+    # |- 'fetch' (synchronize automatically after delete)
+    blog = db.query(models.Blog).filter(
+        models.Blog.id == id
+    )
+    if not blog.first():
+        raise HTTPException(status_code = status.HTTP_404_NOT_FOUND, 
+                            detail = f"Blog with ID {id} is not available")
+    
+    blog.delete(synchronize_session=False)
+    db.commit()
+    return "Deleted"
+
+# Update
+@app.put('/blog/{id}', status_code=status.HTTP_202_ACCEPTED)
+def update(id, request: schemas.Blog, db: Session = Depends(get_db)):
+    blog = db.query(models.Blog).filter(models.Blog.id == id)
+    if not blog.first():
+        raise HTTPException(status_code = status.HTTP_404_NOT_FOUND, 
+                            detail = f"Blog with ID {id} is not available")
+    blog.update(request.dict())
+    db.commit()
+    return "Updated"
