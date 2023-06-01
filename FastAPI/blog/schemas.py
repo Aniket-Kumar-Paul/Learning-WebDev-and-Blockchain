@@ -1,24 +1,31 @@
 from pydantic import BaseModel, Field
+from typing import List
 
-class Blog(BaseModel):
+class BlogBase(BaseModel):
     title: str 
     body: str
 
-class ShowBlog(Blog): # Extend Blog class
-    pass # show only title & body, no id
-
-    # When orm_mode is set to True in a Pydantic model, it enables the model to accept and return ORM objects directly, rather than just dictionaries. 
-    class Config():
-        orm_mode = True 
+class Blog(BlogBase):
+    class Config() :
+        orm_mode = True
 
 class User(BaseModel):
     name: str
     email: str
     password: str
 
-class ShowUser(User): # Show only name and email, exclude password
+class ShowUser(User): # Show only name, email and blogs created, exclude password
+    blogs: List[Blog] = [] # default value []
     password: str = Field(None, exclude=True)
 
-    class Config():
+    class Config() :
         orm_mode = True
         
+class ShowBlog(BaseModel):
+    title: str 
+    body: str 
+    creator: ShowUser
+
+    # When orm_mode is set to True in a Pydantic model, it enables the model to accept and return ORM objects directly, rather than just dictionaries. 
+    class Config():
+        orm_mode = True 
