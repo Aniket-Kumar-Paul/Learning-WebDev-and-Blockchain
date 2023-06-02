@@ -53,3 +53,10 @@ From root directory, run this everytime you add/update any packages:
     > import string
     > hex_string = ''.join(random.choices(string.hexdigits.lower(), k=64))
     > print(hex_string)
+
+# Authentcation :-
+> authentication.py -> login route & create access token 
+> token.py -> function to create access token, verify access token 
+> oauth2.py -> get current token, verify it and get current user
+> For protecting a route, add this parameter in the function:
+    |- current_user: schemas.User = Depends(get_current_user)
