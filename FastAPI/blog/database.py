@@ -19,3 +19,12 @@ SessionLocal = sessionmaker(
 
 # Declare mapping
 Base = declarative_base()
+
+# Creating instance of the SessionLocal
+def get_db():
+    db = SessionLocal()  # create instance of the databse session
+
+    try:
+        yield db
+    finally:
+        db.close
