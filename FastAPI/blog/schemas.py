@@ -29,3 +29,15 @@ class ShowBlog(BaseModel):
     # When orm_mode is set to True in a Pydantic model, it enables the model to accept and return ORM objects directly, rather than just dictionaries. 
     class Config():
         orm_mode = True 
+
+class Login(BaseModel):
+    username: str 
+    password: str
+
+# Tokens
+class Token(BaseModel):
+    access_token: str
+    token_type: str
+
+class TokenData(BaseModel):
+    username: str | None = None

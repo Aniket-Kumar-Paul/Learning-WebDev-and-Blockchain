@@ -45,3 +45,11 @@ From root directory, run this everytime you add/update any packages:
   Pydantic Model   -> schema
 
 # User tags=['..', '..'] for separating routes based on tags in docs 
+
+# python-jose -> for jwt token
+
+# To get 64 length random hex string (for secret_key):
+    > import random
+    > import string
+    > hex_string = ''.join(random.choices(string.hexdigits.lower(), k=64))
+    > print(hex_string)
