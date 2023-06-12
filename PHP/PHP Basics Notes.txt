@@ -1,0 +1,65 @@
+PHP Basics Notes :-
+|- Dynamically typed
+|- No case sensitivity for functions
+|- Data Types: string, integer, float, boolean, array, object
+
+<?php
+	echo "Hi"; // Print
+	echo "<br"; // New Line
+
+	$var1 = 3; // Variables
+	$var3 = 5;
+	echo $var1 + $var2;
+
+	echo var_dump(1==4); // O/P: bool(false) To get variable's type/value
+
+	define('PI', 3.14); // Constant
+	echo PI;
+
+	if($var1 > 5) { // IF/ELSE
+		echo "Something";
+	} else if($age == 2) {
+		..
+	} else {
+		..
+	}
+
+	// Arrays
+	$langs = array("Python", "C", "C++");
+	echo count($langs); // Count Function
+
+	// Loops
+	while($var1 < 5) { // While
+		..
+	}
+
+	do { // Do-While
+		..
+	} while($var1 < 5);
+
+	for($a=0; $a<count($langs); $a++) {// For
+		echo $langs[$a];
+	}
+
+	foreach($langs as $value) { // Foreach (to iterate array)
+		echo $value;
+	} 
+	
+	// Function
+	function print_num($num) {
+		echo "Hi";
+		echo $num;
+	}
+	print_num(10);
+
+	// Strings
+	$str = "Hey wassup";
+	$name = "Aniket";
+	$str = $str.$name; // . -> Concatenation Operator
+	$lenn = strlen($str); // strlen
+	// Other funtions :-
+	// str_word_count($str)
+	// strrev($str) -> reverse string
+	// strpos($str, "wassup") -> find index where "wassup" starts in str
+	// str_replace("was", "is", $str) -> replace was with is
+?>
