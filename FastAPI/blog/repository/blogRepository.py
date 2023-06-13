@@ -13,6 +13,7 @@ def create(request: schemas.Blog, db: Session = Depends(get_db)):
         body=request.body,
         user_id = 1
     )
+    
     db.add(new_blog)
     db.commit()
     db.refresh(new_blog)
