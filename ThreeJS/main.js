@@ -1,5 +1,6 @@
 import * as THREE from "three";
 import "./style.css";
+import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 
 // Scene
 const scene = new THREE.Scene();
@@ -38,9 +39,16 @@ scene.add(camera);
 const canvas = document.querySelector(".webgl"); // make a canvas element in index.html & access it here
 const renderer = new THREE.WebGLRenderer({ canvas });
 renderer.setSize(sizes.width, sizes.height);
+renderer.setPixelRatio(2) // default is 1, more => better quality but more resource intensive
 renderer.render(scene, camera);
 
-
+// Controls
+const controls = new OrbitControls(camera, canvas); // Allows to rotate/drag the camera
+controls.enableDamping = true; // smooths out the camera movement
+controls.enablePan = false; // disable panning
+controls.enableZoom = false; // disable zooming
+controls.autoRotate = true; // auto rotate the camera
+controls.autoRotateSpeed = 5; // speed of auto rotation
 
 // With just the above, if we resize our browser window,
 // the canvas doesn't resize
@@ -60,7 +68,8 @@ window.addEventListener("resize", () => {
 });
 // Re-render
 const loop = () => {
+  controls.update();
   renderer.render(scene, camera);
-  window.requestAnimationFrame(loop); 
-}
+  window.requestAnimationFrame(loop);
+};
 loop();
